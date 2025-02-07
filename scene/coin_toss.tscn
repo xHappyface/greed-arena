@@ -3,6 +3,7 @@
 [ext_resource type="Script" path="res://scripts/coin.gd" id="1_q75nw"]
 
 [sub_resource type="Curve3D" id="Curve3D_rh4cb"]
+resource_local_to_scene = true
 _data = {
 "points": PackedVector3Array(0, 0, 0, 0, 12, 0, 0, 0, 0, 0, 8, 0, 0, 0, 0, 0, 0, -25),
 "tilts": PackedFloat32Array(0, 0)
@@ -32,7 +33,7 @@ tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
+"update": 1,
 "values": [0.0]
 }
 
@@ -60,6 +61,7 @@ _data = {
 }
 
 [node name="Path3D" type="Path3D"]
+top_level = true
 curve = SubResource("Curve3D_rh4cb")
 script = ExtResource("1_q75nw")
 
