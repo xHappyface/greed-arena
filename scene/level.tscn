@@ -1,0 +1,69 @@
+[gd_scene load_steps=9 format=3 uid="uid://mycvdum3j3e7"]
+
+[ext_resource type="PackedScene" uid="uid://5xjrlqdulx2k" path="res://scene/player.tscn" id="1_4lwku"]
+[ext_resource type="Script" path="res://scripts/level.gd" id="1_e06ki"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_pmq2o"]
+sky_top_color = Color(0.325, 0.24, 0.75, 1)
+sky_horizon_color = Color(0.55, 0.275, 0.490417, 1)
+ground_bottom_color = Color(1, 1, 1, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+energy_multiplier = 0.97
+
+[sub_resource type="Sky" id="Sky_kjsdp"]
+sky_material = SubResource("ProceduralSkyMaterial_pmq2o")
+
+[sub_resource type="Environment" id="Environment_du7dn"]
+background_mode = 2
+sky = SubResource("Sky_kjsdp")
+tonemap_mode = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lbgrh"]
+albedo_color = Color(0.65, 0.65, 0.65, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_sajsk"]
+material = SubResource("StandardMaterial3D_lbgrh")
+size = Vector2(50, 50)
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_rs4ur"]
+
+[node name="Level" type="Node3D"]
+script = ExtResource("1_e06ki")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_du7dn")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Arena" type="StaticBody3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Arena"]
+mesh = SubResource("PlaneMesh_sajsk")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Arena"]
+shape = SubResource("WorldBoundaryShape3D_rs4ur")
+
+[node name="Player" parent="." instance=ExtResource("1_4lwku")]
+motion_mode = 1
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-4.37114e-08, 1, 4.37114e-08, 0, -4.37114e-08, 1, 1, 4.37114e-08, 1.91069e-15, 0, 24, 0)
+
+[node name="RayCast3D" type="RayCast3D" parent="Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 15, 0)
+top_level = true
+target_position = Vector3(0, -4000, 0)
+debug_shape_custom_color = Color(1, 0, 0.966667, 1)
+debug_shape_thickness = 5
+
+[node name="CoinSpawner" type="Timer" parent="."]
+wait_time = 3.5
+autostart = true
+
+[node name="Tosser" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26.5, 0, 0)
+
+[connection signal="timeout" from="CoinSpawner" to="." method="_on_coin_spawner_timeout"]
