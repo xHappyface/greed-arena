@@ -1,6 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://ujubbrqec464"]
+[gd_scene load_steps=8 format=3 uid="uid://ujubbrqec464"]
 
 [ext_resource type="Script" path="res://scripts/coin.gd" id="1_q75nw"]
+[ext_resource type="PackedScene" uid="uid://cc6udej8dxpv5" path="res://assets/coin.glb" id="2_uq4g6"]
 
 [sub_resource type="Curve3D" id="Curve3D_rh4cb"]
 resource_local_to_scene = true
@@ -9,14 +10,6 @@ _data = {
 "tilts": PackedFloat32Array(0, 0)
 }
 point_count = 2
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o1yko"]
-albedo_color = Color(1, 1, 0, 1)
-
-[sub_resource type="SphereMesh" id="SphereMesh_4chon"]
-material = SubResource("StandardMaterial3D_o1yko")
-radius = 0.25
-height = 0.5
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_738dq"]
 height = 1.0
@@ -71,9 +64,8 @@ loop = false
 
 [node name="Coin" type="Area3D" parent="PathFollow3D"]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="PathFollow3D/Coin"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
-mesh = SubResource("SphereMesh_4chon")
+[node name="Mesh" parent="PathFollow3D/Coin" instance=ExtResource("2_uq4g6")]
+transform = Transform3D(0.5, 0, 0, 0, -2.18557e-08, -0.5, 0, 0.5, -2.18557e-08, 0, 0.25, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="PathFollow3D/Coin"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)

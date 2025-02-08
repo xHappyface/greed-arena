@@ -1,19 +1,126 @@
-[gd_scene load_steps=2 format=3 uid="uid://xkuguas8vqlg"]
+[gd_scene load_steps=12 format=3 uid="uid://xkuguas8vqlg"]
 
+[ext_resource type="Script" path="res://scripts/level_manager.gd" id="1_j3kkd"]
 [ext_resource type="PackedScene" uid="uid://mycvdum3j3e7" path="res://scene/level.tscn" id="1_lbn0e"]
+[ext_resource type="Script" path="res://scripts/game.gd" id="1_vesyv"]
+[ext_resource type="FontFile" uid="uid://x8r7xm2n3h5q" path="res://assets/ZCOOLQingKeHuangYou-Regular.ttf" id="2_6h7na"]
+[ext_resource type="Script" path="res://scripts/ui.gd" id="3_xd8kc"]
+[ext_resource type="FontFile" uid="uid://b1u3oxno5hdsm" path="res://assets/PermanentMarker-Regular.ttf" id="5_r5o8c"]
+[ext_resource type="StyleBox" uid="uid://df2yhi5wwfyen" path="res://resources/main_menu_button_style_normal.tres" id="6_xloty"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_l6ipn"]
+font = ExtResource("2_6h7na")
+font_size = 48
+font_color = Color(0, 1, 0, 1)
+outline_size = 6
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_n0jvg"]
+font = ExtResource("2_6h7na")
+font_size = 48
+font_color = Color(0, 0.666667, 1, 1)
+outline_size = 6
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_fdvl5"]
+font = ExtResource("5_r5o8c")
+font_size = 64
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Theme" id="Theme_owecb"]
+default_font_size = 32
+Button/colors/font_color = Color(1, 1, 1, 1)
+Button/constants/outline_size = 6
+Button/styles/hover = ExtResource("6_xloty")
+Button/styles/normal = ExtResource("6_xloty")
+Button/styles/pressed = ExtResource("6_xloty")
 
 [node name="Game" type="Node"]
+script = ExtResource("1_vesyv")
 
-[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+[node name="LevelManager" type="Node" parent="."]
+script = ExtResource("1_j3kkd")
+default_level = ExtResource("1_lbn0e")
+
+[node name="GameView" type="SubViewportContainer" parent="LevelManager"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+[node name="GameViewport" type="SubViewport" parent="LevelManager/GameView"]
 handle_input_locally = false
 size = Vector2i(640, 480)
 render_target_update_mode = 4
 
-[node name="Level" parent="SubViewportContainer/SubViewport" instance=ExtResource("1_lbn0e")]
+[node name="UI" type="Control" parent="LevelManager"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("3_xd8kc")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="LevelManager/UI"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+alignment = 1
+
+[node name="MoneyLabel" type="Label" parent="LevelManager/UI/VBoxContainer"]
+layout_mode = 2
+text = "$0.00"
+label_settings = SubResource("LabelSettings_l6ipn")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="LevelManager/UI/VBoxContainer"]
+layout_mode = 2
+text = "3:00"
+label_settings = SubResource("LabelSettings_n0jvg")
+
+[node name="MainMenu" type="Control" parent="."]
+process_mode = 2
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainMenu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Title" type="Label" parent="MainMenu/VBoxContainer"]
+layout_mode = 2
+text = "Greed Arena"
+label_settings = SubResource("LabelSettings_fdvl5")
+
+[node name="Control" type="Control" parent="MainMenu/VBoxContainer"]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+
+[node name="PlayButton" type="Button" parent="MainMenu/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = SubResource("Theme_owecb")
+text = "Play"
+
+[connection signal="pressed" from="MainMenu/VBoxContainer/PlayButton" to="." method="start_game"]

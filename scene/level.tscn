@@ -28,6 +28,7 @@ size = Vector2(50, 50)
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_rs4ur"]
 
 [node name="Level" type="Node3D"]
+process_mode = 1
 script = ExtResource("1_e06ki")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -60,10 +61,17 @@ debug_shape_custom_color = Color(1, 0, 0.966667, 1)
 debug_shape_thickness = 5
 
 [node name="CoinSpawner" type="Timer" parent="."]
+process_callback = 0
 wait_time = 3.5
 autostart = true
 
 [node name="Tosser" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26.5, 0, 0)
+
+[node name="GameTimer" type="Timer" parent="."]
+process_callback = 0
+wait_time = 180.0
+one_shot = true
+autostart = true
 
 [connection signal="timeout" from="CoinSpawner" to="." method="_on_coin_spawner_timeout"]

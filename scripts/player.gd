@@ -13,7 +13,7 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	if global_position.distance_to(destination) > 0.25:
-		velocity = -transform.basis.z * 1_200.0 * delta
+		velocity = -transform.basis.z * 1_600.0 * delta
 	else:
 		velocity = Vector3.ZERO
 	move_and_slide()
