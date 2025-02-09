@@ -62,7 +62,7 @@ debug_shape_thickness = 5
 
 [node name="CoinSpawner" type="Timer" parent="."]
 process_callback = 0
-wait_time = 3.5
+wait_time = 2.5
 autostart = true
 
 [node name="Tosser" type="Node3D" parent="."]

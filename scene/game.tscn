@@ -52,10 +52,11 @@ grow_vertical = 2
 
 [node name="GameViewport" type="SubViewport" parent="LevelManager/GameView"]
 handle_input_locally = false
-size = Vector2i(640, 480)
+size = Vector2i(960, 720)
 render_target_update_mode = 4
 
 [node name="UI" type="Control" parent="LevelManager"]
+process_mode = 1
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -67,22 +68,23 @@ script = ExtResource("3_xd8kc")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="LevelManager/UI"]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 8.0
+offset_top = 4.0
+offset_right = 114.0
+offset_bottom = 106.0
 mouse_filter = 2
-alignment = 1
 
-[node name="MoneyLabel" type="Label" parent="LevelManager/UI/VBoxContainer"]
+[node name="Money" type="Label" parent="LevelManager/UI/VBoxContainer"]
 layout_mode = 2
 text = "$0.00"
 label_settings = SubResource("LabelSettings_l6ipn")
-horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Label" type="Label" parent="LevelManager/UI/VBoxContainer"]
+[node name="Time" type="Label" parent="LevelManager/UI/VBoxContainer"]
 layout_mode = 2
 text = "3:00"
 label_settings = SubResource("LabelSettings_n0jvg")
+vertical_alignment = 1
 
 [node name="MainMenu" type="Control" parent="."]
 process_mode = 2
@@ -117,6 +119,7 @@ custom_minimum_size = Vector2(0, 16)
 layout_mode = 2
 
 [node name="PlayButton" type="Button" parent="MainMenu/VBoxContainer"]
+custom_minimum_size = Vector2(160, 56)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4

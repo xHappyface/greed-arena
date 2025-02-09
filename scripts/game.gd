@@ -11,3 +11,9 @@ func _ready() -> void:
 func start_game() -> void:
 	main_menu.hide()
 	get_tree().paused = false
+
+func stop_game() -> void:
+	get_tree().paused = true
+	level_manager.level.queue_free()
+	level_manager.load_level()
+	main_menu.show()

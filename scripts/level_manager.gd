@@ -17,3 +17,4 @@ func load_level() -> void:
 		game_viewport.add_child(level)
 		level.level_manager = self
 		ui.player = level.player
+		level.game_timer.connect("timeout", get_parent().stop_game)

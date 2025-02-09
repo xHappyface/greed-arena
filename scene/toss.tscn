@@ -1,0 +1,220 @@
+[gd_scene load_steps=19 format=3 uid="uid://ujubbrqec464"]
+
+[ext_resource type="Script" path="res://scripts/money.gd" id="1_rxwle"]
+[ext_resource type="PackedScene" uid="uid://cc6udej8dxpv5" path="res://assets/coin.glb" id="2_tdft5"]
+[ext_resource type="PackedScene" uid="uid://cc1k24ayb25y3" path="res://assets/MoneyBag.glb" id="3_3hgpq"]
+
+[sub_resource type="Curve3D" id="Curve3D_rh4cb"]
+resource_local_to_scene = true
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 12, 0, 0, 0, 0, 0, 8, 0, 0, 0, 0, 0, 0, -25),
+"tilts": PackedFloat32Array(0, 0)
+}
+point_count = 2
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_738dq"]
+height = 1.0
+radius = 0.25
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_cgaty"]
+height = 1.0
+radius = 0.3
+
+[sub_resource type="Animation" id="Animation_bpx6o"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PathFollow3D:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PathFollow3D/TossObject/Coin:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector3(1.5708, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PathFollow3D/TossObject/MoneyBag:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0.25, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_0610y"]
+resource_name = "spin"
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PathFollow3D/TossObject/Coin:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(1.5708, 0, 0), Vector3(1.5708, 6.28319, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PathFollow3D:progress_ratio")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1.0]
+}
+
+[sub_resource type="Animation" id="Animation_hxkmm"]
+resource_name = "toss"
+length = 1.2
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PathFollow3D:progress_ratio")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="Animation" id="Animation_of0sw"]
+resource_name = "bounce"
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PathFollow3D/TossObject/MoneyBag:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0.25, 0), Vector3(0, 0.75, 0), Vector3(0, 0.25, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PathFollow3D:progress_ratio")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_phy2s"]
+_data = {
+"RESET": SubResource("Animation_bpx6o"),
+"bounce": SubResource("Animation_of0sw"),
+"spin": SubResource("Animation_0610y"),
+"toss": SubResource("Animation_hxkmm")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_xf7hf"]
+animation = &"bounce"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_tfwev"]
+animation = &"spin"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_sifuk"]
+animation = &"toss"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_56nap"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_tlyhp"]
+switch_mode = 2
+advance_mode = 2
+advance_expression = "toss_object_type == TossObject.COIN"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_qeu8j"]
+switch_mode = 2
+advance_mode = 2
+advance_expression = "toss_object_type == TossObject.MONEYBAG"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_2820u"]
+states/End/position = Vector2(962, 153)
+states/Start/position = Vector2(150, 153)
+states/bounce/node = SubResource("AnimationNodeAnimation_xf7hf")
+states/bounce/position = Vector2(448, 208)
+states/spin/node = SubResource("AnimationNodeAnimation_tfwev")
+states/spin/position = Vector2(448, 100)
+states/toss/node = SubResource("AnimationNodeAnimation_sifuk")
+states/toss/position = Vector2(282, 153)
+transitions = ["Start", "toss", SubResource("AnimationNodeStateMachineTransition_56nap"), "toss", "spin", SubResource("AnimationNodeStateMachineTransition_tlyhp"), "toss", "bounce", SubResource("AnimationNodeStateMachineTransition_qeu8j")]
+graph_offset = Vector2(-19, 53)
+
+[node name="Path3D" type="Path3D"]
+top_level = true
+curve = SubResource("Curve3D_rh4cb")
+script = ExtResource("1_rxwle")
+
+[node name="PathFollow3D" type="PathFollow3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -25)
+rotation_mode = 0
+loop = false
+
+[node name="TossObject" type="Area3D" parent="PathFollow3D"]
+
+[node name="Coin" parent="PathFollow3D/TossObject" instance=ExtResource("2_tdft5")]
+transform = Transform3D(0.5, 0, 0, 0, -1.81e-06, -0.5, 0, 0.5, -1.81e-06, 0, 0.25, 0)
+
+[node name="CoinCollisionShape" type="CollisionShape3D" parent="PathFollow3D/TossObject"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("CylinderShape3D_738dq")
+
+[node name="MoneyBag" parent="PathFollow3D/TossObject" instance=ExtResource("3_3hgpq")]
+physics_interpolation_mode = 2
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.25, 0)
+visible = false
+
+[node name="MoneyBagCollisionShape" type="CollisionShape3D" parent="PathFollow3D/TossObject"]
+physics_interpolation_mode = 2
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+visible = false
+shape = SubResource("CylinderShape3D_cgaty")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_phy2s")
+}
+autoplay = "toss"
+playback_auto_capture_transition_type = 6
+movie_quit_on_finish = true
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeStateMachine_2820u")
+advance_expression_base_node = NodePath("..")
+anim_player = NodePath("../AnimationPlayer")
