@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://cykeqoq2o75vu"
-path="res://.godot/imported/MoneyBundle.glb-ea1cf88ebb7803be51c6ce29ac9e5290.scn"
+uid="uid://blophjadpdvy3"
+path="res://.godot/imported/heart.glb-74ad43cbb51806319d2a2c5d0f05515f.scn"
 
 [deps]
 
-source_file="res://assets/MoneyBundle.glb"
-dest_files=["res://.godot/imported/MoneyBundle.glb-ea1cf88ebb7803be51c6ce29ac9e5290.scn"]
+source_file="res://assets/models/heart.glb"
+dest_files=["res://.godot/imported/heart.glb-74ad43cbb51806319d2a2c5d0f05515f.scn"]
 
 [params]
 

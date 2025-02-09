@@ -1,0 +1,208 @@
+[gd_scene load_steps=17 format=3 uid="uid://bw3meurl8oqm2"]
+
+[ext_resource type="PackedScene" uid="uid://f1nns6jwlmsb" path="res://assets/models/Bomb.glb" id="1_mpx71"]
+
+[sub_resource type="Curve3D" id="Curve3D_6wtny"]
+resource_local_to_scene = true
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 12, 0, 0, 0, 0, 0, 8, 0, 0, 0, 0, 0, 0, -25),
+"tilts": PackedFloat32Array(0, 0)
+}
+point_count = 2
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_br0qe"]
+height = 1.0
+radius = 0.3
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qfpwr"]
+albedo_color = Color(1, 0.490196, 0, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_g4qch"]
+material = SubResource("StandardMaterial3D_qfpwr")
+radius = 2.0
+height = 4.0
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_dxtne"]
+height = 1.0
+radius = 2.0
+
+[sub_resource type="Animation" id="Animation_w73b7"]
+resource_name = "toss"
+length = 1.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PathFollow3D:progress_ratio")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="Animation" id="Animation_5q8v7"]
+resource_name = "expand"
+length = 1.2
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PathFollow3D/RigidBody3D/Bomb2:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6, 1.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0.5, 0.5, 0.5), Vector3(0.67, 0.67, 0.67), Vector3(0.5, 0.5, 0.5)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PathFollow3D:progress_ratio")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+
+[sub_resource type="Animation" id="Animation_r74lk"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PathFollow3D/RigidBody3D/Bomb2:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.5, 0.5, 0.5)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PathFollow3D:progress_ratio")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PathFollow3D/RigidBody3D/Blast/MeshInstance3D:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.1, 0.1, 0.1)]
+}
+
+[sub_resource type="Animation" id="Animation_p1dcf"]
+resource_name = "explode"
+length = 0.4
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PathFollow3D/RigidBody3D/Bomb2:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.5, 0.5, 0.5), Vector3(1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PathFollow3D/RigidBody3D/Blast/MeshInstance3D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0.1, 0.1, 0.1), Vector3(0.5, 0.5, 0.5), Vector3(1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5ddrt"]
+_data = {
+"RESET": SubResource("Animation_r74lk"),
+"expand": SubResource("Animation_5q8v7"),
+"explode": SubResource("Animation_p1dcf"),
+"toss": SubResource("Animation_w73b7")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_udm7w"]
+animation = &"expand"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_fossu"]
+animation = &"toss"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_4jq1b"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_gkync"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_i6ha8"]
+states/expand/node = SubResource("AnimationNodeAnimation_udm7w")
+states/expand/position = Vector2(470, 100)
+states/toss/node = SubResource("AnimationNodeAnimation_fossu")
+states/toss/position = Vector2(331, 100)
+transitions = ["Start", "toss", SubResource("AnimationNodeStateMachineTransition_4jq1b"), "toss", "expand", SubResource("AnimationNodeStateMachineTransition_gkync")]
+
+[node name="Path3D" type="Path3D"]
+curve = SubResource("Curve3D_6wtny")
+
+[node name="PathFollow3D" type="PathFollow3D" parent="."]
+rotation_mode = 0
+loop = false
+
+[node name="RigidBody3D" type="RigidBody3D" parent="PathFollow3D"]
+mass = 2.5
+lock_rotation = true
+
+[node name="Bomb2" parent="PathFollow3D/RigidBody3D" instance=ExtResource("1_mpx71")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.25, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PathFollow3D/RigidBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("CylinderShape3D_br0qe")
+
+[node name="Blast" type="Area3D" parent="PathFollow3D/RigidBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="PathFollow3D/RigidBody3D/Blast"]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
+mesh = SubResource("SphereMesh_g4qch")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PathFollow3D/RigidBody3D/Blast"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+shape = SubResource("CylinderShape3D_dxtne")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_5ddrt")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeStateMachine_i6ha8")
+advance_expression_base_node = NodePath("..")
+anim_player = NodePath("../AnimationPlayer")

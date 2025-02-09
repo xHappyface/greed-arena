@@ -3,12 +3,12 @@
 importer="font_data_dynamic"
 type="FontFile"
 uid="uid://x8r7xm2n3h5q"
-path="res://.godot/imported/ZCOOLQingKeHuangYou-Regular.ttf-c21f5e7cdc175fe3e59730453ae15219.fontdata"
+path="res://.godot/imported/ZCOOLQingKeHuangYou-Regular.ttf-8e87ec5b5c6a5865ae7cea9c13806a5e.fontdata"
 
 [deps]
 
-source_file="res://assets/ZCOOLQingKeHuangYou-Regular.ttf"
-dest_files=["res://.godot/imported/ZCOOLQingKeHuangYou-Regular.ttf-c21f5e7cdc175fe3e59730453ae15219.fontdata"]
+source_file="res://assets/fonts/ZCOOLQingKeHuangYou-Regular.ttf"
+dest_files=["res://.godot/imported/ZCOOLQingKeHuangYou-Regular.ttf-8e87ec5b5c6a5865ae7cea9c13806a5e.fontdata"]
 
 [params]
 

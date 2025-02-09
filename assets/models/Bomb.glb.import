@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://blophjadpdvy3"
-path="res://.godot/imported/heart.glb-fa2e2c03dbf999d8ff7f3fbbe6265722.scn"
+uid="uid://f1nns6jwlmsb"
+path="res://.godot/imported/Bomb.glb-7db2ec4fb41348dd10b35b6acee09728.scn"
 
 [deps]
 
-source_file="res://assets/heart.glb"
-dest_files=["res://.godot/imported/heart.glb-fa2e2c03dbf999d8ff7f3fbbe6265722.scn"]
+source_file="res://assets/models/Bomb.glb"
+dest_files=["res://.godot/imported/Bomb.glb-7db2ec4fb41348dd10b35b6acee09728.scn"]
 
 [params]
 

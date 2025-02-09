@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://bn7srn0v22bpv"
-path="res://.godot/imported/PocketWatch.glb-2d622d5e829a2048d2728709ce579ed0.scn"
+path="res://.godot/imported/PocketWatch.glb-d51e0eb77658e1e4c339f23191820c50.scn"
 
 [deps]
 
-source_file="res://assets/PocketWatch.glb"
-dest_files=["res://.godot/imported/PocketWatch.glb-2d622d5e829a2048d2728709ce579ed0.scn"]
+source_file="res://assets/models/PocketWatch.glb"
+dest_files=["res://.godot/imported/PocketWatch.glb-d51e0eb77658e1e4c339f23191820c50.scn"]
 
 [params]
 
