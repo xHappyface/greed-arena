@@ -1,6 +1,6 @@
 [gd_scene load_steps=17 format=3 uid="uid://bw3meurl8oqm2"]
 
-[ext_resource type="PackedScene" uid="uid://f1nns6jwlmsb" path="res://assets/models/Bomb.glb" id="1_mpx71"]
+[ext_resource type="PackedScene" uid="uid://f1nns6jwlmsb" path="res://assets/models/Bomb.glb" id="1_y6ij4"]
 
 [sub_resource type="Curve3D" id="Curve3D_6wtny"]
 resource_local_to_scene = true
@@ -26,58 +26,12 @@ height = 4.0
 height = 1.0
 radius = 2.0
 
-[sub_resource type="Animation" id="Animation_w73b7"]
-resource_name = "toss"
-length = 1.2
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("PathFollow3D:progress_ratio")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1.2),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [0.0, 1.0]
-}
-
-[sub_resource type="Animation" id="Animation_5q8v7"]
-resource_name = "expand"
-length = 1.2
-loop_mode = 1
-step = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("PathFollow3D/RigidBody3D/Bomb2:scale")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.6, 1.2),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector3(0.5, 0.5, 0.5), Vector3(0.67, 0.67, 0.67), Vector3(0.5, 0.5, 0.5)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("PathFollow3D:progress_ratio")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [1.0]
-}
-
 [sub_resource type="Animation" id="Animation_r74lk"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("PathFollow3D/RigidBody3D/Bomb2:scale")
+tracks/0/path = NodePath("PathFollow3D/Bomb/BombMesh:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -101,7 +55,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("PathFollow3D/RigidBody3D/Blast/MeshInstance3D:scale")
+tracks/2/path = NodePath("PathFollow3D/Bomb/Blast/MeshInstance3D:scale")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -111,6 +65,36 @@ tracks/2/keys = {
 "values": [Vector3(0.1, 0.1, 0.1)]
 }
 
+[sub_resource type="Animation" id="Animation_5q8v7"]
+resource_name = "expand"
+length = 1.2
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PathFollow3D/Bomb/BombMesh:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6, 1.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0.5, 0.5, 0.5), Vector3(0.67, 0.67, 0.67), Vector3(0.5, 0.5, 0.5)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PathFollow3D:progress_ratio")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+
 [sub_resource type="Animation" id="Animation_p1dcf"]
 resource_name = "explode"
 length = 0.4
@@ -118,7 +102,7 @@ step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("PathFollow3D/RigidBody3D/Bomb2:scale")
+tracks/0/path = NodePath("PathFollow3D/Bomb/BombMesh:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -130,7 +114,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("PathFollow3D/RigidBody3D/Blast/MeshInstance3D:scale")
+tracks/1/path = NodePath("PathFollow3D/Bomb/Blast/MeshInstance3D:scale")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -138,6 +122,22 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Vector3(0.1, 0.1, 0.1), Vector3(0.5, 0.5, 0.5), Vector3(1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_w73b7"]
+resource_name = "toss"
+length = 1.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PathFollow3D:progress_ratio")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_5ddrt"]
@@ -175,25 +175,25 @@ curve = SubResource("Curve3D_6wtny")
 rotation_mode = 0
 loop = false
 
-[node name="RigidBody3D" type="RigidBody3D" parent="PathFollow3D"]
+[node name="Bomb" type="RigidBody3D" parent="PathFollow3D"]
 mass = 2.5
 lock_rotation = true
 
-[node name="Bomb2" parent="PathFollow3D/RigidBody3D" instance=ExtResource("1_mpx71")]
+[node name="BombMesh" parent="PathFollow3D/Bomb" instance=ExtResource("1_y6ij4")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.25, 0)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="PathFollow3D/RigidBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PathFollow3D/Bomb"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 shape = SubResource("CylinderShape3D_br0qe")
 
-[node name="Blast" type="Area3D" parent="PathFollow3D/RigidBody3D"]
+[node name="Blast" type="Area3D" parent="PathFollow3D/Bomb"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="PathFollow3D/RigidBody3D/Blast"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="PathFollow3D/Bomb/Blast"]
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
 mesh = SubResource("SphereMesh_g4qch")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="PathFollow3D/RigidBody3D/Blast"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PathFollow3D/Bomb/Blast"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
 shape = SubResource("CylinderShape3D_dxtne")
 

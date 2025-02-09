@@ -25,14 +25,14 @@ static func create_new(object_type: TossObject = TossObject.COIN) -> Toss:
 	var toss: Toss = load("res://scene/toss.tscn").instantiate()
 	match object_type:
 		TossObject.MONEYBAG:
-			var toss_object: Area3D = toss.find_child("TossObject")
-			for child in toss_object.get_children():
+			var toss_obj: Area3D = toss.find_child("TossObject")
+			for child in toss_obj.get_children():
 				child.hide()
 				child.physics_interpolation_mode = Node.PHYSICS_INTERPOLATION_MODE_OFF
-			toss_object.find_child("MoneyBag").show()
-			toss_object.find_child("MoneyBag").physics_interpolation_mode = Node.PHYSICS_INTERPOLATION_MODE_ON
-			toss_object.find_child("MoneyBagCollisionShape").show()
-			toss_object.find_child("MoneyBagCollisionShape").physics_interpolation_mode = \
+			toss_obj.find_child("MoneyBag").show()
+			toss_obj.find_child("MoneyBag").physics_interpolation_mode = Node.PHYSICS_INTERPOLATION_MODE_ON
+			toss_obj.find_child("MoneyBagCollisionShape").show()
+			toss_obj.find_child("MoneyBagCollisionShape").physics_interpolation_mode = \
 			  Node.PHYSICS_INTERPOLATION_MODE_ON
 		_:
 			pass
