@@ -1,0 +1,9 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://ccdjol76f5dmb"]
+
+[ext_resource type="Shader" uid="uid://catkigces2l0t" path="res://shaders/bombExplosion_SHADER.tres" id="1_57cq4"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_57cq4")
+shader_parameter/ExplosionProgress = 0.0
+shader_parameter/Rotation = 0.0
