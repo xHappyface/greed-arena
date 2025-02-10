@@ -3,9 +3,9 @@
 [ext_resource type="Script" path="res://scripts/level_manager.gd" id="1_j3kkd"]
 [ext_resource type="PackedScene" uid="uid://mycvdum3j3e7" path="res://scene/level.tscn" id="1_lbn0e"]
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_vesyv"]
-[ext_resource type="FontFile" uid="uid://x8r7xm2n3h5q" path="res://assets/ZCOOLQingKeHuangYou-Regular.ttf" id="2_6h7na"]
+[ext_resource type="FontFile" uid="uid://x8r7xm2n3h5q" path="res://assets/fonts/ZCOOLQingKeHuangYou-Regular.ttf" id="2_6h7na"]
 [ext_resource type="Script" path="res://scripts/ui.gd" id="3_xd8kc"]
-[ext_resource type="FontFile" uid="uid://b1u3oxno5hdsm" path="res://assets/PermanentMarker-Regular.ttf" id="5_r5o8c"]
+[ext_resource type="FontFile" uid="uid://b1u3oxno5hdsm" path="res://assets/fonts/PermanentMarker-Regular.ttf" id="5_r5o8c"]
 [ext_resource type="StyleBox" uid="uid://df2yhi5wwfyen" path="res://resources/main_menu_button_style_normal.tres" id="6_xloty"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_l6ipn"]
