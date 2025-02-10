@@ -1,0 +1,56 @@
+[gd_resource type="VisualShader" load_steps=6 format=3 uid="uid://c0nl6uw8xheb8"]
+
+[sub_resource type="VisualShaderNodeFresnel" id="VisualShaderNodeFresnel_nvkih"]
+
+[sub_resource type="Gradient" id="Gradient_xs7q1"]
+colors = PackedColorArray(0, 0.388235, 1, 1, 0, 0.737255, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_pdrne"]
+gradient = SubResource("Gradient_xs7q1")
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_yah3r"]
+texture = SubResource("GradientTexture1D_pdrne")
+texture_type = 1
+
+[sub_resource type="VisualShaderNodeClamp" id="VisualShaderNodeClamp_s7dvg"]
+default_input_values = [0, 0.0, 1, 0.1, 2, 0.99]
+
+[resource]
+code = "shader_type spatial;
+render_mode blend_mix, depth_draw_opaque, cull_back, diffuse_lambert, specular_schlick_ggx, unshaded;
+
+uniform sampler2D tex_frg_4 : source_color;
+
+
+
+void fragment() {
+// Fresnel:2
+	float n_in2p3 = 1.00000;
+	float n_out2p0 = pow(1.0 - clamp(dot(NORMAL, VIEW), 0.0, 1.0), n_in2p3);
+
+
+// Clamp:5
+	float n_in5p1 = 0.10000;
+	float n_in5p2 = 0.99000;
+	float n_out5p0 = clamp(n_out2p0, n_in5p1, n_in5p2);
+
+
+// Texture2D:4
+	vec4 n_out4p0 = texture(tex_frg_4, vec2(n_out5p0));
+
+
+// Output:0
+	ALBEDO = vec3(n_out4p0.xyz);
+
+
+}
+"
+graph_offset = Vector2(-635.932, -54.1287)
+flags/unshaded = true
+nodes/fragment/2/node = SubResource("VisualShaderNodeFresnel_nvkih")
+nodes/fragment/2/position = Vector2(-1020, 160)
+nodes/fragment/4/node = SubResource("VisualShaderNodeTexture_yah3r")
+nodes/fragment/4/position = Vector2(-360, 160)
+nodes/fragment/5/node = SubResource("VisualShaderNodeClamp_s7dvg")
+nodes/fragment/5/position = Vector2(-640, 160)
+nodes/fragment/connections = PackedInt32Array(4, 0, 0, 0, 2, 0, 5, 0, 5, 0, 4, 0)
