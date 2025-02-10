@@ -62,7 +62,7 @@ debug_shape_thickness = 5
 
 [node name="MoneySpawner" type="Timer" parent="."]
 process_callback = 0
-wait_time = 2.15
+wait_time = 1.87
 autostart = true
 
 [node name="GameTimer" type="Timer" parent="."]
@@ -109,9 +109,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.25, 0, 26.5)
 [node name="Tosser12" type="Node3D" parent="Tossers"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.25, 0, 26.5)
 
-[node name="BombTimer" type="Timer" parent="."]
+[node name="BombSpawner" type="Timer" parent="."]
 process_callback = 0
-wait_time = 3.0
+wait_time = 2.5
 autostart = true
 
 [connection signal="timeout" from="MoneySpawner" to="." method="_on_coin_spawner_timeout"]
+[connection signal="timeout" from="BombSpawner" to="." method="_on_bomb_spawner_timeout"]
