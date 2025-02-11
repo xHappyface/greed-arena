@@ -1,9 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://oiii1h3var0f"]
-
-[ext_resource type="PackedScene" uid="uid://bgyctxnnryd12" path="res://assets/models/fx models/BombExplosion.glb" id="1_nkhak"]
-
-[node name="BombExplosion" type="Node3D"]
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-
-[node name="BombExplosion2" parent="MeshInstance3D" instance=ExtResource("1_nkhak")]

@@ -12,7 +12,7 @@ material = SubResource("StandardMaterial3D_o0gs1")
 height = 1.0
 
 [node name="Player" type="CharacterBody3D"]
-wall_min_slide_angle = 0.0872665
+motion_mode = 1
 script = ExtResource("1_rw3mr")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]

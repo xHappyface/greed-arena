@@ -3,6 +3,7 @@
 [ext_resource type="Shader" uid="uid://catkigces2l0t" path="res://resources/shaders/bombExplosion_SHADER.tres" id="1_57cq4"]
 
 [resource]
+resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("1_57cq4")
 shader_parameter/ExplosionProgress = 0.0

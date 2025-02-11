@@ -1,12 +1,41 @@
-[gd_scene load_steps=9 format=3 uid="uid://mycvdum3j3e7"]
+[gd_scene load_steps=15 format=3 uid="uid://mycvdum3j3e7"]
 
 [ext_resource type="PackedScene" uid="uid://5xjrlqdulx2k" path="res://scene/player.tscn" id="1_4lwku"]
 [ext_resource type="Script" path="res://scripts/level.gd" id="1_e06ki"]
+[ext_resource type="PackedScene" uid="uid://dhe2ikno7nac8" path="res://assets/models/GroundMarker.glb" id="3_lmxm2"]
+
+[sub_resource type="Curve" id="Curve_o8371"]
+max_value = 5.0
+_data = [Vector2(0, 2.75), 0.0, 0.0, 0, 0, Vector2(0.5, 2.25), 0.0, 0.0, 0, 0, Vector2(1, 1.75), 0.0, 0.0, 0, 0]
+point_count = 3
+metadata/_snap_enabled = true
+metadata/_snap_count = 20
+
+[sub_resource type="Curve" id="Curve_34wpf"]
+max_value = 5.0
+_data = [Vector2(0, 4.25), 0.0, 0.0, 0, 0, Vector2(0.5, 3.5), 0.0, 0.0, 0, 0, Vector2(1, 3), 0.0, 0.0, 0, 0]
+point_count = 3
+metadata/_snap_enabled = true
+metadata/_snap_count = 20
+
+[sub_resource type="Curve" id="Curve_rs33r"]
+max_value = 5.0
+_data = [Vector2(0, 2.25), 0.0, 0.0, 0, 0, Vector2(0.5, 2), 0.0, 0.0, 0, 0, Vector2(1, 1.25), 0.0, 0.0, 0, 0]
+point_count = 3
+metadata/_snap_enabled = true
+metadata/_snap_count = 20
+
+[sub_resource type="Curve" id="Curve_caa00"]
+max_value = 5.0
+_data = [Vector2(0, 2.125), 0.0, 0.0, 0, 0, Vector2(0.5, 1.625), 0.0, 0.0, 0, 0, Vector2(1, 1.125), 0.0, 0.0, 0, 0]
+point_count = 3
+metadata/_snap_enabled = true
+metadata/_snap_count = 40
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_pmq2o"]
 sky_top_color = Color(0.325, 0.24, 0.75, 1)
 sky_horizon_color = Color(0.55, 0.275, 0.490417, 1)
-ground_bottom_color = Color(1, 1, 1, 1)
+ground_bottom_color = Color(0.205117, 0.205117, 0.205117, 1)
 ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
 energy_multiplier = 0.97
 
@@ -25,11 +54,18 @@ albedo_color = Color(0.65, 0.65, 0.65, 1)
 material = SubResource("StandardMaterial3D_lbgrh")
 size = Vector2(50, 50)
 
-[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_rs4ur"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_exmgm"]
+size = Vector3(50, 0.1, 50)
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_b5eoe"]
 
 [node name="Level" type="Node3D"]
 process_mode = 1
 script = ExtResource("1_e06ki")
+money_spawner_curve = SubResource("Curve_o8371")
+money_spawner2_curve = SubResource("Curve_34wpf")
+bomb_spawner_curve = SubResource("Curve_rs33r")
+bomb_spawner2_curve = SubResource("Curve_caa00")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_du7dn")
@@ -38,38 +74,16 @@ environment = SubResource("Environment_du7dn")
 transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
 shadow_enabled = true
 
-[node name="Arena" type="StaticBody3D" parent="."]
+[node name="Arena" type="StaticBody3D" parent="." groups=["Arena"]]
+collision_layer = 3
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Arena"]
 mesh = SubResource("PlaneMesh_sajsk")
 skeleton = NodePath("../..")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Arena"]
-shape = SubResource("WorldBoundaryShape3D_rs4ur")
-
-[node name="Player" parent="." instance=ExtResource("1_4lwku")]
-motion_mode = 1
-
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(-4.37114e-08, 1, 4.37114e-08, 0, -4.37114e-08, 1, 1, 4.37114e-08, 1.91069e-15, 0, 24, 0)
-
-[node name="RayCast3D" type="RayCast3D" parent="Camera3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 15, 0)
-top_level = true
-target_position = Vector3(0, -4000, 0)
-debug_shape_custom_color = Color(1, 0, 0.966667, 1)
-debug_shape_thickness = 5
-
-[node name="MoneySpawner" type="Timer" parent="."]
-process_callback = 0
-wait_time = 1.87
-autostart = true
-
-[node name="GameTimer" type="Timer" parent="."]
-process_callback = 0
-wait_time = 180.0
-one_shot = true
-autostart = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.05, 0)
+shape = SubResource("BoxShape3D_exmgm")
 
 [node name="Tossers" type="Node" parent="."]
 
@@ -109,10 +123,50 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.25, 0, 26.5)
 [node name="Tosser12" type="Node3D" parent="Tossers"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.25, 0, 26.5)
 
-[node name="BombSpawner" type="Timer" parent="."]
+[node name="Timers" type="Node" parent="."]
+
+[node name="GameTimer" type="Timer" parent="Timers"]
+process_callback = 0
+wait_time = 180.0
+one_shot = true
+autostart = true
+
+[node name="MoneySpawner" type="Timer" parent="Timers"]
+process_callback = 0
+wait_time = 1.87
+autostart = true
+
+[node name="MoneySpawner2" type="Timer" parent="Timers"]
+wait_time = 2.47
+
+[node name="BombSpawner" type="Timer" parent="Timers"]
 process_callback = 0
 wait_time = 2.5
 autostart = true
 
-[connection signal="timeout" from="MoneySpawner" to="." method="_on_coin_spawner_timeout"]
-[connection signal="timeout" from="BombSpawner" to="." method="_on_bomb_spawner_timeout"]
+[node name="BombSpawner2" type="Timer" parent="Timers"]
+process_callback = 0
+wait_time = 1.87
+
+[node name="Player" parent="." instance=ExtResource("1_4lwku")]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0.829038, -0.559193, 0, 0.559193, 0.829038, 1, 3.62384e-08, -2.44431e-08, -28, 28, 0)
+attributes = SubResource("CameraAttributesPractical_b5eoe")
+
+[node name="RayCast3D" type="RayCast3D" parent="Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 15, 0)
+top_level = true
+target_position = Vector3(0, -4000, 0)
+collision_mask = 2
+debug_shape_custom_color = Color(1, 0, 0.966667, 1)
+debug_shape_thickness = 5
+
+[node name="GroundMarker" parent="." instance=ExtResource("3_lmxm2")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
+visible = false
+
+[connection signal="timeout" from="Timers/MoneySpawner" to="." method="_on_money_spawner_timeout"]
+[connection signal="timeout" from="Timers/MoneySpawner2" to="." method="_on_money_spawner2_timeout"]
+[connection signal="timeout" from="Timers/BombSpawner" to="." method="_on_bomb_spawner_timeout"]
+[connection signal="timeout" from="Timers/BombSpawner2" to="." method="_on_bomb_spawner2_timeout"]

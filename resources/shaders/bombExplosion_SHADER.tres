@@ -184,6 +184,7 @@ operator = 2
 [sub_resource type="VisualShaderNodeClamp" id="VisualShaderNodeClamp_ld6n4"]
 
 [resource]
+resource_local_to_scene = true
 code = "shader_type spatial;
 render_mode blend_mix, depth_draw_opaque, cull_back, diffuse_lambert, specular_schlick_ggx, unshaded, shadows_disabled;
 
@@ -414,7 +415,6 @@ void fragment() {
 
 }
 "
-graph_offset = Vector2(-642.284, -143.221)
 flags/unshaded = true
 flags/shadows_disabled = true
 nodes/fragment/0/position = Vector2(280, -60)

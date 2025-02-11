@@ -13,9 +13,11 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	if global_position.distance_to(destination) > 0.25:
-		velocity = -transform.basis.z * 3_000.0 * delta
+		velocity = -transform.basis.z * 1_000.0 * delta
 	else:
 		velocity = Vector3.ZERO
+		if LevelProvider.level.ground_marker.visible:
+			LevelProvider.level.ground_marker.hide()
 	move_and_slide()
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -24,7 +26,10 @@ func _unhandled_input(event: InputEvent) -> void:
 		camera_ray.global_position = camera.project_ray_origin(mouse_pos)
 		camera_ray.target_position = camera.project_ray_normal(mouse_pos) * camera.far
 		camera_ray.force_raycast_update()
-		if camera_ray.is_colliding():
+		if camera_ray.is_colliding() and camera_ray.get_collider().is_in_group("Arena"):
 			var collision_point: Vector3 = camera_ray.get_collision_point()
 			destination = Vector3(collision_point.x, 0.0, collision_point.z)
 			look_at(destination)
+			LevelProvider.level.ground_marker.position = destination
+			if not LevelProvider.level.ground_marker.visible:
+				LevelProvider.level.ground_marker.show()
