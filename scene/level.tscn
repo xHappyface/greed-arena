@@ -1,8 +1,9 @@
-[gd_scene load_steps=15 format=3 uid="uid://mycvdum3j3e7"]
+[gd_scene load_steps=16 format=3 uid="uid://mycvdum3j3e7"]
 
 [ext_resource type="PackedScene" uid="uid://5xjrlqdulx2k" path="res://scene/player.tscn" id="1_4lwku"]
 [ext_resource type="Script" path="res://scripts/level.gd" id="1_e06ki"]
-[ext_resource type="PackedScene" uid="uid://dhe2ikno7nac8" path="res://assets/models/GroundMarker.glb" id="3_lmxm2"]
+[ext_resource type="PackedScene" uid="uid://dwflaugcjnkcj" path="res://scene/ground_marker.tscn" id="3_4eoms"]
+[ext_resource type="PackedScene" uid="uid://had3vaqtgdyv" path="res://assets/models/ArenaApron.glb" id="4_emtkf"]
 
 [sub_resource type="Curve" id="Curve_o8371"]
 max_value = 5.0
@@ -45,7 +46,12 @@ sky_material = SubResource("ProceduralSkyMaterial_pmq2o")
 [sub_resource type="Environment" id="Environment_du7dn"]
 background_mode = 2
 sky = SubResource("Sky_kjsdp")
-tonemap_mode = 2
+ambient_light_sky_contribution = 0.6
+ambient_light_energy = 0.6
+tonemap_mode = 3
+tonemap_exposure = 0.97
+tonemap_white = 6.0
+ssao_enabled = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lbgrh"]
 albedo_color = Color(0.65, 0.65, 0.65, 1)
@@ -55,7 +61,7 @@ material = SubResource("StandardMaterial3D_lbgrh")
 size = Vector2(50, 50)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_exmgm"]
-size = Vector3(50, 0.1, 50)
+size = Vector3(50, 1, 50)
 
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_b5eoe"]
 
@@ -72,7 +78,11 @@ environment = SubResource("Environment_du7dn")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+light_color = Color(0.894118, 0.909804, 0.705882, 1)
+light_energy = 0.35
+light_indirect_energy = 0.35
 shadow_enabled = true
+shadow_opacity = 0.87
 
 [node name="Arena" type="StaticBody3D" parent="." groups=["Arena"]]
 collision_layer = 3
@@ -82,7 +92,7 @@ mesh = SubResource("PlaneMesh_sajsk")
 skeleton = NodePath("../..")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Arena"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.05, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 shape = SubResource("BoxShape3D_exmgm")
 
 [node name="Tossers" type="Node" parent="."]
@@ -151,7 +161,7 @@ wait_time = 1.87
 [node name="Player" parent="." instance=ExtResource("1_4lwku")]
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(-4.37114e-08, 0.829038, -0.559193, 0, 0.559193, 0.829038, 1, 3.62384e-08, -2.44431e-08, -28, 28, 0)
+transform = Transform3D(-4.37114e-08, 0.866026, -0.5, 0, 0.5, 0.866026, 1, 3.78552e-08, -2.18557e-08, -24, 24, 0)
 attributes = SubResource("CameraAttributesPractical_b5eoe")
 
 [node name="RayCast3D" type="RayCast3D" parent="Camera3D"]
@@ -162,9 +172,55 @@ collision_mask = 2
 debug_shape_custom_color = Color(1, 0, 0.966667, 1)
 debug_shape_thickness = 5
 
-[node name="GroundMarker" parent="." instance=ExtResource("3_lmxm2")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
+[node name="GroundMarker" parent="." instance=ExtResource("3_4eoms")]
 visible = false
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 12, 30, -12)
+light_energy = 20.0
+light_indirect_energy = 5.0
+light_volumetric_fog_energy = 5.0
+light_specular = 1.0
+shadow_enabled = true
+shadow_opacity = 0.87
+spot_range = 45.0
+spot_angle = 37.0
+
+[node name="SpotLight3D2" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 12, 30, 12)
+light_energy = 20.0
+light_indirect_energy = 5.0
+light_volumetric_fog_energy = 5.0
+light_specular = 1.0
+shadow_enabled = true
+shadow_opacity = 0.87
+spot_range = 45.0
+spot_angle = 37.0
+
+[node name="SpotLight3D3" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -12, 30, -12)
+light_energy = 20.0
+light_indirect_energy = 5.0
+light_volumetric_fog_energy = 5.0
+light_specular = 1.0
+shadow_enabled = true
+shadow_opacity = 0.87
+spot_range = 45.0
+spot_angle = 37.0
+
+[node name="SpotLight3D4" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -12, 30, 12)
+light_energy = 20.0
+light_indirect_energy = 5.0
+light_volumetric_fog_energy = 5.0
+light_specular = 1.0
+shadow_enabled = true
+shadow_opacity = 0.87
+spot_range = 45.0
+spot_angle = 37.0
+
+[node name="ArenaApron2" parent="." instance=ExtResource("4_emtkf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5, 0)
 
 [connection signal="timeout" from="Timers/MoneySpawner" to="." method="_on_money_spawner_timeout"]
 [connection signal="timeout" from="Timers/MoneySpawner2" to="." method="_on_money_spawner2_timeout"]

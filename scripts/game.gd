@@ -3,7 +3,7 @@ class_name Game
 
 @onready var level_manager: LevelManager = $LevelManager
 @onready var ui: Control = $LevelManager/UI
-@onready var main_menu: Control = $MainMenu
+@onready var main_menu: Control = $Menu/MainMenu
 
 func _ready() -> void:
 	get_tree().paused = true

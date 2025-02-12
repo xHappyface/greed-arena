@@ -7,16 +7,19 @@ albedo_color = Color(1, 0, 0, 1)
 
 [sub_resource type="SphereMesh" id="SphereMesh_g7npe"]
 material = SubResource("StandardMaterial3D_o0gs1")
+radius = 0.75
+height = 1.5
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_tsefq"]
 height = 1.0
+radius = 0.75
 
 [node name="Player" type="CharacterBody3D"]
 motion_mode = 1
 script = ExtResource("1_rw3mr")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
 mesh = SubResource("SphereMesh_g7npe")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]

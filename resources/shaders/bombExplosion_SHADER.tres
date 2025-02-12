@@ -85,6 +85,7 @@ op_type = 0
 
 [sub_resource type="VisualShaderNodeFloatParameter" id="VisualShaderNodeFloatParameter_ugxm5"]
 parameter_name = "Rotation"
+hint = 1
 default_value_enabled = true
 
 [sub_resource type="VisualShaderNodeReroute" id="VisualShaderNodeReroute_g8nod"]
@@ -189,7 +190,7 @@ code = "shader_type spatial;
 render_mode blend_mix, depth_draw_opaque, cull_back, diffuse_lambert, specular_schlick_ggx, unshaded, shadows_disabled;
 
 uniform float ExplosionProgress : hint_range(0, 1) = 0;
-uniform float Rotation = 0;
+uniform float Rotation : hint_range(0, 1) = 0;
 uniform sampler2D tex_frg_106;
 uniform sampler2D tex_frg_101;
 uniform sampler2D tex_frg_104 : source_color;
@@ -415,6 +416,7 @@ void fragment() {
 
 }
 "
+graph_offset = Vector2(-5660.56, -54.0716)
 flags/unshaded = true
 flags/shadows_disabled = true
 nodes/fragment/0/position = Vector2(280, -60)

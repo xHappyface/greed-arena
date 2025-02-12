@@ -16,15 +16,16 @@ func _ready() -> void:
 	tween.tween_callback(bomb_timer.start).set_delay(0.87)
 
 func _physics_process(_delta: float) -> void:
-	bomb_label.get_parent().look_at(LevelProvider.level.camera.position)
+	var anchor: Node3D = bomb_label.get_parent()
+	anchor.look_at(LevelProvider.level.camera.position)
 	var time_left: float = bomb_timer.time_left + 0.5
 	var timer_started: bool = not bomb_timer.is_stopped()
 	if timer_started and time_left < 1:
-		bomb_label.modulate = Color(1.0, 0.0, 0.0, 1.0)
+		bomb_label.modulate = Color(1.0, 0.0, 0.0, bomb_label.modulate.a)
 	elif timer_started and time_left < 2:
-		bomb_label.modulate = Color(1.0, 0.45, 0.0, 1.0)
+		bomb_label.modulate = Color(1.0, 0.45, 0.0, bomb_label.modulate.a)
 	elif timer_started and time_left < 3:
-		bomb_label.modulate = Color(1.0, 0.65, 0.0, 1.0)
+		bomb_label.modulate = Color(1.0, 0.65, 0.0, bomb_label.modulate.a)
 	if not timer_started and not triggered:
 		bomb_label.text = "3"
 	elif not timer_started and triggered:
