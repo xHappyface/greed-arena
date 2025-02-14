@@ -16,6 +16,7 @@ radius = 0.75
 
 [node name="Player" type="CharacterBody3D"]
 motion_mode = 1
+wall_min_slide_angle = 0.0872665
 script = ExtResource("1_rw3mr")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
@@ -25,3 +26,5 @@ mesh = SubResource("SphereMesh_g7npe")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 shape = SubResource("CylinderShape3D_tsefq")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]

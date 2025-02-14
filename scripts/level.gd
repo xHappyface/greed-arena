@@ -8,7 +8,7 @@ class_name Level
 
 @onready var bomb_scene: PackedScene = preload("res://scene/bomb_toss.tscn")
 
-@onready var arena_mesh: MeshInstance3D = $Arena/MeshInstance3D
+@onready var arena_mesh: MeshInstance3D = $WorldObjects/NavigationRegion3D/MeshInstance3D
 @onready var tossers: Node = $Tossers
 @onready var game_timer: Timer = $Timers/GameTimer
 @onready var money_spawner: Timer = $Timers/MoneySpawner
