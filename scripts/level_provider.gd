@@ -1,3 +1,4 @@
 extends Node
 
-var level: Level = null
+var save_file: SaveFile
+var level: Level

@@ -7,10 +7,7 @@ class_name LevelManager
 @onready var level_scene: PackedScene = preload("res://scene/level.tscn")
 
 func _ready() -> void:
-	LevelProvider.level = $GameView/GameViewport/Level
-	LevelProvider.level.level_manager = self
-	ui.player = LevelProvider.level.player
-	LevelProvider.level.game_timer.connect("timeout", get_parent().stop_game)
+	load_level()
 
 func load_level() -> void:
 	if level_scene.can_instantiate():
@@ -20,3 +17,4 @@ func load_level() -> void:
 		level.level_manager = self
 		ui.player = level.player
 		level.game_timer.connect("timeout", get_parent().stop_game)
+		level.player.money = LevelProvider.save_file.money

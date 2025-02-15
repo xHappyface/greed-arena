@@ -52,7 +52,6 @@ ambient_light_energy = 0.6
 tonemap_mode = 3
 tonemap_exposure = 0.97
 tonemap_white = 6.0
-ssao_enabled = true
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_dx50t"]
 vertices = PackedVector3Array(-24.5, 0.02, -24.5, -24.5, 0.02, 24.5, 24.5, 0.02, 24.5, 24.5, 0.02, -24.5)

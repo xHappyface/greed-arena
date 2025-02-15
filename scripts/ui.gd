@@ -6,6 +6,9 @@ class_name UI
 
 var player: Player = null
 
+func _ready() -> void:
+	money.text = "$%s" % [_human_readable_number(LevelProvider.save_file.money)]
+
 func _physics_process(_delta: float) -> void:
 	if LevelProvider.level:
 		var time_left: float = LevelProvider.level.game_timer.time_left
