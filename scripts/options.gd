@@ -1,4 +1,5 @@
 extends Control
+class_name OptionsMenu
 
 func set_mute(state: bool) -> void:
 	AudioServer.set_bus_mute(0, state)

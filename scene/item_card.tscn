@@ -1,0 +1,61 @@
+[gd_scene load_steps=9 format=3 uid="uid://bt8t5otsw6dxx"]
+
+[ext_resource type="Script" path="res://scripts/item_card.gd" id="1_b81ic"]
+[ext_resource type="FontFile" uid="uid://x8r7xm2n3h5q" path="res://assets/fonts/ZCOOLQingKeHuangYou-Regular.ttf" id="1_pek6v"]
+[ext_resource type="FontFile" uid="uid://o68r33fxemg2" path="res://assets/fonts/Silkscreen-Regular.ttf" id="2_rek5l"]
+[ext_resource type="StyleBox" uid="uid://df2yhi5wwfyen" path="res://resources/main_menu_button_style_normal.tres" id="3_wc2ur"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xjvs7"]
+bg_color = Color(0, 0.666667, 1, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="Theme" id="Theme_ux35v"]
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_xjvs7")
+
+[sub_resource type="LabelSettings" id="LabelSettings_4xf3r"]
+font = ExtResource("1_pek6v")
+font_size = 32
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Theme" id="Theme_6hvyf"]
+Button/colors/font_color = Color(1, 1, 1, 1)
+Button/constants/outline_size = 4
+Button/font_sizes/font_size = 16
+Button/fonts/font = ExtResource("2_rek5l")
+Button/styles/hover = ExtResource("3_wc2ur")
+Button/styles/normal = ExtResource("3_wc2ur")
+Button/styles/pressed = ExtResource("3_wc2ur")
+
+[node name="ItemCard" type="PanelContainer"]
+custom_minimum_size = Vector2(200, 240)
+theme = SubResource("Theme_ux35v")
+script = ExtResource("1_b81ic")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 4
+alignment = 1
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Default"
+label_settings = SubResource("LabelSettings_4xf3r")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(160, 32)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = SubResource("Theme_6hvyf")
+text = "$100,000"

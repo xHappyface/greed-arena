@@ -5,7 +5,12 @@ class_name Player
 
 var camera: Camera3D = null
 var camera_ray: RayCast3D = null
+
+const BASE_SPEED: float = 1_000.0
+const SPEED_GROWTH_RATE: float = 100.0
+
 var money: int = 0
+var speed: float = BASE_SPEED
 
 func _ready() -> void:
 	camera = get_parent().find_child("Camera3D")
@@ -18,7 +23,7 @@ func _physics_process(delta: float) -> void:
 		return
 	else:
 		look_at(nav.target_position)
-		velocity = delta * global_position.direction_to(nav.target_position) * 1_000.0
+		velocity = delta * global_position.direction_to(nav.target_position) * speed
 	move_and_slide()
 
 func _unhandled_input(event: InputEvent) -> void:

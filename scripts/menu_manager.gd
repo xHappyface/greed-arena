@@ -4,11 +4,13 @@ class_name MenuManager
 @onready var menus: Array[Control] = [
 	$MainMenu,
 	$OptionsMenu,
+	$Shop
 ]
 
 enum Menu {
 	MAIN,
 	OPTIONS,
+	SHOP,
 }
 
 var current_menu: Menu = Menu.MAIN
@@ -26,3 +28,6 @@ func switch_to_main() -> void:
 
 func switch_to_options() -> void:
 	switch_to_menu(Menu.OPTIONS)
+
+func switch_to_shop() -> void:
+	switch_to_menu(Menu.SHOP)

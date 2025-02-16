@@ -21,6 +21,7 @@ buses/default_bus_layout="res://resources/default_bus_layout.tres"
 
 [autoload]
 
+Util="*res://scripts/util.gd"
 LevelProvider="*res://scripts/level_provider.gd"
 
 [display]

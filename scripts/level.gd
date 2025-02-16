@@ -19,6 +19,9 @@ class_name Level
 @onready var camera: Camera3D = $Camera3D
 @onready var ground_marker: Node3D = $GroundMarker
 
+const BASE_GAME_TIME: float = 180.0
+const TIME_GROWTH_RATE: float = 15.0
+
 var level_manager: LevelManager = null
 
 func _physics_process(_delta: float) -> void:
@@ -32,14 +35,14 @@ func _on_money_spawner_timeout() -> void:
 	var toss: Toss = Toss.create_new(Toss.random_toss_object())
 	_spawn_at_random_tosser(toss)
 	toss.player = player
-	toss.toss_object.connect("tree_exited", level_manager.ui._on_coin_collected)
+	toss.toss_object.connect("tree_exited", level_manager.ui.update_money)
 	
 func _on_money_spawner2_timeout() -> void:
 	money_spawner2.wait_time = money_spawner2_curve.sample(game_timer.time_left / game_timer.wait_time)
 	var toss: Toss = Toss.create_new(Toss.random_toss_object())
 	_spawn_at_random_tosser(toss)
 	toss.player = player
-	toss.toss_object.connect("tree_exited", level_manager.ui._on_coin_collected)
+	toss.toss_object.connect("tree_exited", level_manager.ui.update_money)
 
 func _on_bomb_spawner_timeout() -> void:
 	bomb_spawner.wait_time = bomb_spawner_curve.sample(game_timer.time_left / game_timer.wait_time)
