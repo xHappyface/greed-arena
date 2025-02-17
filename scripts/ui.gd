@@ -3,6 +3,7 @@ class_name UI
 
 @onready var money: Label = $VBoxContainer/Money
 @onready var time: Label = $VBoxContainer/Time
+@onready var pause_screen: Label = $Paused
 
 func _ready() -> void:
 	money.text = "$%s" % [Util.human_readable_number(LevelProvider.save_file.money)]

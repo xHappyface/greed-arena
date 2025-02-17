@@ -270,8 +270,8 @@ curve = SubResource("Curve3D_rh4cb")
 script = ExtResource("1_rxwle")
 
 [node name="PathFollow3D" type="PathFollow3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -25)
-progress = 32.2417
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.77341, -3.17413)
+progress = 6.90357
 rotation_mode = 0
 loop = false
 

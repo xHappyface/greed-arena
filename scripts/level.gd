@@ -46,13 +46,13 @@ func _on_money_spawner2_timeout() -> void:
 
 func _on_bomb_spawner_timeout() -> void:
 	bomb_spawner.wait_time = bomb_spawner_curve.sample(game_timer.time_left / game_timer.wait_time)
-	var bomb: Bomb = bomb_scene.instantiate()
+	var bomb: BombToss = bomb_scene.instantiate()
 	bomb.level = self
 	_spawn_at_random_tosser(bomb)
 
 func _on_bomb_spawner2_timeout() -> void:
 	bomb_spawner2.wait_time = bomb_spawner2_curve.sample(game_timer.time_left / game_timer.wait_time)
-	var bomb: Bomb = bomb_scene.instantiate()
+	var bomb: BombToss = bomb_scene.instantiate()
 	bomb.level = self
 	_spawn_at_random_tosser(bomb)
 
