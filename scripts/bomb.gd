@@ -2,7 +2,6 @@ extends RigidBody3D
 class_name Bomb
 
 @export var shock_curve: Curve
-@export var air_resistance_curve: Curve
 
 @onready var shockwave: Area3D = $Shockwave
 @onready var blast: Area3D = $Blast
@@ -16,7 +15,9 @@ func _explode() -> void:
 				print("GAME OVER")
 				LevelProvider.level.level_manager.get_parent().stop_game()
 	for body in shockwave_bodies:
-		if body is RigidBody3D:
+		if body == self:
+			continue
+		elif body is RigidBody3D:
 			print("@@@@@@@@@@@@@@@@@@@@@@@")
 			var shockwave_radius: float = shockwave.get_child(0).shape.radius
 			var distance_away: float = \

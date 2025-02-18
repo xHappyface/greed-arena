@@ -2,6 +2,7 @@ extends CharacterBody3D
 class_name Player
 
 @onready var nav: NavigationAgent3D = $NavigationAgent3D
+@onready var magnetic_field: Area3D = $MagneticField
 
 var camera: Camera3D = null
 var camera_ray: RayCast3D = null
