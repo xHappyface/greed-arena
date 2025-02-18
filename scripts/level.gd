@@ -47,13 +47,11 @@ func _on_money_spawner2_timeout() -> void:
 func _on_bomb_spawner_timeout() -> void:
 	bomb_spawner.wait_time = bomb_spawner_curve.sample(game_timer.time_left / game_timer.wait_time)
 	var bomb: BombToss = bomb_scene.instantiate()
-	bomb.level = self
 	_spawn_at_random_tosser(bomb)
 
 func _on_bomb_spawner2_timeout() -> void:
 	bomb_spawner2.wait_time = bomb_spawner2_curve.sample(game_timer.time_left / game_timer.wait_time)
 	var bomb: BombToss = bomb_scene.instantiate()
-	bomb.level = self
 	_spawn_at_random_tosser(bomb)
 
 func _spawn_at_random_tosser(toss_scene_instance: Path3D) -> void:
@@ -68,4 +66,4 @@ func _spawn_at_random_tosser(toss_scene_instance: Path3D) -> void:
 func _random_drop_point() -> Vector3:
 	var half_arena_mesh_side: float = arena_mesh.mesh.size.x / 2.0
 	return Vector3(randf_range(-half_arena_mesh_side, half_arena_mesh_side), \
-	  0.0, randf_range(-half_arena_mesh_side, half_arena_mesh_side))
+	  0.01, randf_range(-half_arena_mesh_side, half_arena_mesh_side))

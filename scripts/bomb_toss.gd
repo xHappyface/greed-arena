@@ -4,10 +4,6 @@ class_name BombToss
 @onready var bomb: RigidBody3D = $PathFollow3D/Bomb
 @onready var bomb_timer: Timer = $PathFollow3D/Bomb/Timer
 @onready var bomb_label: Label3D = $PathFollow3D/Bomb/Blast/Node3D/Label3D
-@onready var blast: Area3D = $PathFollow3D/Bomb/Blast
-@onready var blast_mesh: Node3D = $PathFollow3D/Bomb/Blast/BlastMesh
-
-var level: Level = null
 
 var triggered: bool = false
 
@@ -36,16 +32,5 @@ func _physics_process(_delta: float) -> void:
 func _on_timer_timeout() -> void:
 	triggered = true
 	var tween: Tween = create_tween()
-	tween.tween_callback(_explode).set_delay(0.3)
+	tween.tween_callback(bomb._explode).set_delay(0.3)
 	tween.tween_callback(queue_free).set_delay(0.2)
-
-func _explode() -> void:
-	if level:
-		var overlapping_bodies: Array[Node3D] = blast.get_overlapping_bodies()
-		for body in overlapping_bodies:
-			if body is Player:
-				print("GAME OVER")
-				level.level_manager.get_parent().stop_game()
-			if body is RigidBody3D:
-				print("@@@@@@@@@@@@@@@@@@@@@@@")
-				body.constant_force += (body.global_position - bomb.global_position).normalized() * 500.0
