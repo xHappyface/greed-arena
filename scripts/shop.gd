@@ -32,7 +32,7 @@ func increment_time_rank() -> void:
 		LevelProvider.save_file.save_game()
 
 func _charge_player(cost: int) -> void:
-	LevelProvider.save_file.money -= 100_000
+	LevelProvider.save_file.money -= cost
 	LevelProvider.level.player.money = LevelProvider.save_file.money
 	get_parent().get_parent().ui.update_money()
 

@@ -38,3 +38,11 @@ func _unhandled_input(event: InputEvent) -> void:
 			LevelProvider.level.ground_marker.position = nav.target_position
 			if not LevelProvider.level.ground_marker.visible:
 				LevelProvider.level.ground_marker.show()
+
+func _on_magnetic_field_area_entered(area: Area3D) -> void:
+	if area is Money:
+		area.is_attracted_to_player = true
+
+func _on_magnetic_field_area_exited(area: Area3D) -> void:
+	if area is Money:
+		area.is_attracted_to_player = false

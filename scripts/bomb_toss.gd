@@ -46,3 +46,6 @@ func _explode() -> void:
 			if body is Player:
 				print("GAME OVER")
 				level.level_manager.get_parent().stop_game()
+			if body is RigidBody3D:
+				print("@@@@@@@@@@@@@@@@@@@@@@@")
+				body.constant_force += (body.global_position - bomb.global_position).normalized() * 500.0

@@ -1,4 +1,5 @@
 extends Node
+class_name Util
 
 static func human_readable_number(number: int) -> String:
 	var formatted_number: String = ("%d" % [number]).reverse()
