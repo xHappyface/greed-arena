@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://mycvdum3j3e7"]
+[gd_scene load_steps=29 format=3 uid="uid://mycvdum3j3e7"]
 
 [ext_resource type="PackedScene" uid="uid://5xjrlqdulx2k" path="res://scene/player.tscn" id="1_4lwku"]
 [ext_resource type="Script" path="res://scripts/level.gd" id="1_e06ki"]
@@ -20,6 +20,13 @@ point_count = 3
 metadata/_snap_enabled = true
 metadata/_snap_count = 20
 
+[sub_resource type="Curve" id="Curve_5g188"]
+max_value = 5.0
+_data = [Vector2(0, 3.75), 0.0, 0.0, 0, 0, Vector2(0.5, 3), 0.0, 0.0, 0, 0, Vector2(1, 2.25), 0.0, 0.0, 0, 0]
+point_count = 3
+metadata/_snap_enabled = true
+metadata/_snap_count = 20
+
 [sub_resource type="Curve" id="Curve_rs33r"]
 max_value = 5.0
 _data = [Vector2(0, 2.25), 0.0, 0.0, 0, 0, Vector2(0.5, 2), 0.0, 0.0, 0, 0, Vector2(1, 1.25), 0.0, 0.0, 0, 0]
@@ -29,10 +36,17 @@ metadata/_snap_count = 20
 
 [sub_resource type="Curve" id="Curve_caa00"]
 max_value = 5.0
-_data = [Vector2(0, 2.125), 0.0, 0.0, 0, 0, Vector2(0.5, 1.625), 0.0, 0.0, 0, 0, Vector2(1, 1.125), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 3), 0.0, 0.0, 0, 0, Vector2(0.5, 2), 0.0, 0.0, 0, 0, Vector2(1, 1.25), 0.0, 0.0, 0, 0]
 point_count = 3
 metadata/_snap_enabled = true
 metadata/_snap_count = 40
+
+[sub_resource type="Curve" id="Curve_5fnpc"]
+max_value = 5.0
+_data = [Vector2(0, 2.25), 0.0, 0.0, 0, 0, Vector2(0.5, 1.75), 0.0, 0.0, 0, 0, Vector2(1, 1.25), 0.0, 0.0, 0, 0]
+point_count = 3
+metadata/_snap_enabled = true
+metadata/_snap_count = 20
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_pmq2o"]
 sky_top_color = Color(0.325, 0.24, 0.75, 1)
@@ -68,6 +82,38 @@ size = Vector2(50, 50)
 [sub_resource type="BoxShape3D" id="BoxShape3D_exmgm"]
 size = Vector3(50, 1, 50)
 
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_1t47y"]
+bounce = 1.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_or3le"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_cji7g"]
+material = SubResource("StandardMaterial3D_or3le")
+top_radius = 0.15
+bottom_radius = 0.15
+height = 48.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_okf7k"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_s3uvk"]
+material = SubResource("StandardMaterial3D_okf7k")
+top_radius = 0.2
+bottom_radius = 0.2
+height = 48.0
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_k8r8u"]
+size = Vector3(10, 6, 50)
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_oohvu"]
+bounce = 1.0
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_u76v8"]
+bounce = 1.0
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_xx07k"]
+bounce = 1.0
+
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_b5eoe"]
 
 [node name="Level" type="Node3D"]
@@ -75,8 +121,10 @@ process_mode = 1
 script = ExtResource("1_e06ki")
 money_spawner_curve = SubResource("Curve_o8371")
 money_spawner2_curve = SubResource("Curve_34wpf")
+money_spawner3_curve = SubResource("Curve_5g188")
 bomb_spawner_curve = SubResource("Curve_rs33r")
 bomb_spawner2_curve = SubResource("Curve_caa00")
+bomb_spawner3_curve = SubResource("Curve_5fnpc")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_du7dn")
@@ -99,7 +147,8 @@ mesh = SubResource("PlaneMesh_sajsk")
 skeleton = NodePath("../../..")
 
 [node name="Arena" type="StaticBody3D" parent="WorldObjects/NavigationRegion3D" groups=["Arena"]]
-collision_layer = 3
+collision_layer = 7
+collision_mask = 7
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="WorldObjects/NavigationRegion3D/Arena"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
@@ -164,6 +213,82 @@ shadow_opacity = 0.87
 spot_range = 45.0
 spot_angle = 37.0
 
+[node name="Ropes" type="StaticBody3D" parent="WorldObjects"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.5, 0, 0)
+disable_mode = 1
+collision_layer = 33
+collision_mask = 33
+physics_material_override = SubResource("PhysicsMaterial_1t47y")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="WorldObjects/Ropes"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 3, 0)
+mesh = SubResource("CylinderMesh_cji7g")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="WorldObjects/Ropes"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 1, 0)
+mesh = SubResource("CylinderMesh_s3uvk")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WorldObjects/Ropes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5, 2, 0)
+shape = SubResource("BoxShape3D_k8r8u")
+
+[node name="Ropes2" type="StaticBody3D" parent="WorldObjects"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -24.5, 0, 0)
+disable_mode = 1
+collision_layer = 33
+collision_mask = 33
+physics_material_override = SubResource("PhysicsMaterial_oohvu")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="WorldObjects/Ropes2"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 3, 0)
+mesh = SubResource("CylinderMesh_cji7g")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="WorldObjects/Ropes2"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 1, 0)
+mesh = SubResource("CylinderMesh_s3uvk")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WorldObjects/Ropes2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5, 2, 0)
+shape = SubResource("BoxShape3D_k8r8u")
+
+[node name="Ropes3" type="StaticBody3D" parent="WorldObjects"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, -24.5)
+disable_mode = 1
+collision_layer = 33
+collision_mask = 33
+physics_material_override = SubResource("PhysicsMaterial_u76v8")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="WorldObjects/Ropes3"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 3, 0)
+mesh = SubResource("CylinderMesh_cji7g")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="WorldObjects/Ropes3"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 1, 0)
+mesh = SubResource("CylinderMesh_s3uvk")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WorldObjects/Ropes3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5, 2, 0)
+shape = SubResource("BoxShape3D_k8r8u")
+
+[node name="Ropes4" type="StaticBody3D" parent="WorldObjects"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 24.5)
+disable_mode = 1
+collision_layer = 33
+collision_mask = 33
+physics_material_override = SubResource("PhysicsMaterial_xx07k")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="WorldObjects/Ropes4"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 3, 0)
+mesh = SubResource("CylinderMesh_cji7g")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="WorldObjects/Ropes4"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 1, 0)
+mesh = SubResource("CylinderMesh_s3uvk")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WorldObjects/Ropes4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5, 2, 0)
+shape = SubResource("BoxShape3D_k8r8u")
+
 [node name="Tossers" type="Node" parent="."]
 
 [node name="Tosser" type="Node3D" parent="Tossers"]
@@ -216,7 +341,12 @@ wait_time = 1.87
 autostart = true
 
 [node name="MoneySpawner2" type="Timer" parent="Timers"]
+process_callback = 0
 wait_time = 2.47
+
+[node name="MoneySpawner3" type="Timer" parent="Timers"]
+process_callback = 0
+wait_time = 1.56
 
 [node name="BombSpawner" type="Timer" parent="Timers"]
 process_callback = 0
@@ -226,6 +356,10 @@ autostart = true
 [node name="BombSpawner2" type="Timer" parent="Timers"]
 process_callback = 0
 wait_time = 1.87
+
+[node name="BombSpawner3" type="Timer" parent="Timers"]
+process_callback = 0
+wait_time = 1.45
 
 [node name="Player" parent="." instance=ExtResource("1_4lwku")]
 
@@ -246,5 +380,7 @@ visible = false
 
 [connection signal="timeout" from="Timers/MoneySpawner" to="." method="_on_money_spawner_timeout"]
 [connection signal="timeout" from="Timers/MoneySpawner2" to="." method="_on_money_spawner2_timeout"]
+[connection signal="timeout" from="Timers/MoneySpawner3" to="." method="_on_money_spawner3_timeout"]
 [connection signal="timeout" from="Timers/BombSpawner" to="." method="_on_bomb_spawner_timeout"]
 [connection signal="timeout" from="Timers/BombSpawner2" to="." method="_on_bomb_spawner2_timeout"]
+[connection signal="timeout" from="Timers/BombSpawner3" to="." method="_on_bomb_spawner3_timeout"]
