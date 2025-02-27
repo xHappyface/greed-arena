@@ -30,10 +30,12 @@ func _process(_delta: float) -> void:
 
 func start_game() -> void:
 	active_game = true
+	Engine.time_scale = 1.0
 	LevelProvider.level.player.money = 0
 	LevelProvider.level.player.speed = LevelProvider.level.player.BASE_SPEED + \
 	  (LevelProvider.speed_rank * LevelProvider.level.player.SPEED_GROWTH_RATE)
 	ui.update_money()
+	LevelProvider.level.player.set_player_magnetism(LevelProvider.magnet_rank)
 	main_menu.hide()
 	get_tree().paused = false
 

@@ -1,10 +1,11 @@
-[gd_scene load_steps=23 format=3 uid="uid://ujubbrqec464"]
+[gd_scene load_steps=25 format=3 uid="uid://ujubbrqec464"]
 
 [ext_resource type="Script" path="res://scripts/toss.gd" id="1_rxwle"]
 [ext_resource type="PackedScene" uid="uid://cc6udej8dxpv5" path="res://assets/models/coin.glb" id="2_luyiw"]
 [ext_resource type="Script" path="res://scripts/money.gd" id="2_ygd6p"]
 [ext_resource type="PackedScene" uid="uid://cykeqoq2o75vu" path="res://assets/models/MoneyBundle.glb" id="3_a001k"]
 [ext_resource type="PackedScene" uid="uid://cc1k24ayb25y3" path="res://assets/models/MoneyBag.glb" id="3_oyag6"]
+[ext_resource type="PackedScene" uid="uid://bn7srn0v22bpv" path="res://assets/models/PocketWatch.glb" id="6_6ayst"]
 
 [sub_resource type="Curve3D" id="Curve3D_rh4cb"]
 resource_local_to_scene = true
@@ -30,6 +31,9 @@ height = 1.0
 radius = 0.6
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_mqfnv"]
+height = 1.0
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_eft6k"]
 height = 1.0
 
 [sub_resource type="Animation" id="Animation_bpx6o"]
@@ -280,6 +284,7 @@ script = ExtResource("1_rxwle")
 
 [node name="PathFollow3D" type="PathFollow3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -25)
+progress = 32.2417
 rotation_mode = 0
 loop = false
 
@@ -312,6 +317,16 @@ visible = false
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 visible = false
 shape = SubResource("CylinderShape3D_mqfnv")
+
+[node name="PocketWatch" parent="PathFollow3D/TossObject" instance=ExtResource("6_6ayst")]
+transform = Transform3D(-4.37114e-08, -1, 4.37114e-08, 0, -4.37114e-08, -1, 1, -4.37114e-08, 1.91069e-15, 0, 0.5, 0)
+visible = false
+
+[node name="PocketWatchCollisionShape" type="CollisionShape3D" parent="PathFollow3D/TossObject"]
+physics_interpolation_mode = 2
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+visible = false
+shape = SubResource("CylinderShape3D_eft6k")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

@@ -40,24 +40,36 @@ func _physics_process(_delta: float) -> void:
 
 func _on_money_spawner_timeout() -> void:
 	money_spawner.wait_time = money_spawner_curve.sample(game_timer.time_left / game_timer.wait_time)
-	var toss: Toss = Toss.create_new(Toss.random_toss_object())
+	var toss_object: Toss.TossObject = Toss.random_toss_object()
+	var toss: Toss = Toss.create_new(toss_object)
 	_spawn_at_random_tosser(toss)
 	toss.player = player
-	toss.toss_object.connect("tree_exited", level_manager.ui.update_money)
+	if toss_object != Toss.TossObject.POCKETWATCH:
+		toss.toss_object.connect("tree_exited", level_manager.ui.update_money)
+	else:
+		toss.toss_object.connect("tree_exited", LevelProvider.slow_time)
 
 func _on_money_spawner2_timeout() -> void:
 	money_spawner2.wait_time = money_spawner2_curve.sample(game_timer.time_left / game_timer.wait_time)
-	var toss: Toss = Toss.create_new(Toss.random_toss_object())
+	var toss_object: Toss.TossObject = Toss.random_toss_object()
+	var toss: Toss = Toss.create_new(toss_object)
 	_spawn_at_random_tosser(toss)
 	toss.player = player
-	toss.toss_object.connect("tree_exited", level_manager.ui.update_money)
+	if toss_object != Toss.TossObject.POCKETWATCH:
+		toss.toss_object.connect("tree_exited", level_manager.ui.update_money)
+	else:
+		toss.toss_object.connect("tree_exited", LevelProvider.slow_time)
 
 func _on_money_spawner3_timeout() -> void:
 	money_spawner3.wait_time = money_spawner3_curve.sample(game_timer.time_left / game_timer.wait_time)
-	var toss: Toss = Toss.create_new(Toss.random_toss_object())
+	var toss_object: Toss.TossObject = Toss.random_toss_object()
+	var toss: Toss = Toss.create_new(toss_object)
 	_spawn_at_random_tosser(toss)
 	toss.player = player
-	toss.toss_object.connect("tree_exited", level_manager.ui.update_money)
+	if toss_object != Toss.TossObject.POCKETWATCH:
+		toss.toss_object.connect("tree_exited", level_manager.ui.update_money)
+	else:
+		toss.toss_object.connect("tree_exited", LevelProvider.slow_time)
 
 func _on_bomb_spawner_timeout() -> void:
 	bomb_spawner.wait_time = bomb_spawner_curve.sample(game_timer.time_left / game_timer.wait_time)

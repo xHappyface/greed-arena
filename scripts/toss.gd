@@ -10,12 +10,14 @@ enum TossObject {
 	COIN,
 	MONEYBUNDLE,
 	MONEYBAG,
+	POCKETWATCH,
 }
 
 static var object_weights: Dictionary = {
 	TossObject.COIN: 50,
 	TossObject.MONEYBUNDLE: 8,
 	TossObject.MONEYBAG: 3,
+	TossObject.POCKETWATCH: 2,
 }
 
 const COIN_VALUE: int = 100
@@ -26,9 +28,9 @@ var toss_object_type: TossObject = TossObject.COIN
 
 static func create_new(object_type: TossObject = TossObject.COIN) -> Toss:
 	var toss: Toss = load("res://scene/toss.tscn").instantiate()
+	var toss_obj: Area3D = toss.find_child("TossObject")
 	match object_type:
 		TossObject.MONEYBUNDLE:
-			var toss_obj: Area3D = toss.find_child("TossObject")
 			for child in toss_obj.get_children():
 				child.hide()
 				child.physics_interpolation_mode = Node.PHYSICS_INTERPOLATION_MODE_OFF
@@ -38,7 +40,6 @@ static func create_new(object_type: TossObject = TossObject.COIN) -> Toss:
 			toss_obj.find_child("MoneyBundleCollisionShape").physics_interpolation_mode = \
 			  Node.PHYSICS_INTERPOLATION_MODE_ON
 		TossObject.MONEYBAG:
-			var toss_obj: Area3D = toss.find_child("TossObject")
 			for child in toss_obj.get_children():
 				child.hide()
 				child.physics_interpolation_mode = Node.PHYSICS_INTERPOLATION_MODE_OFF
@@ -46,6 +47,15 @@ static func create_new(object_type: TossObject = TossObject.COIN) -> Toss:
 			toss_obj.find_child("MoneyBag").physics_interpolation_mode = Node.PHYSICS_INTERPOLATION_MODE_ON
 			toss_obj.find_child("MoneyBagCollisionShape").show()
 			toss_obj.find_child("MoneyBagCollisionShape").physics_interpolation_mode = \
+			  Node.PHYSICS_INTERPOLATION_MODE_ON
+		TossObject.POCKETWATCH:
+			for child in toss_obj.get_children():
+				child.hide()
+				child.physics_interpolation_mode = Node.PHYSICS_INTERPOLATION_MODE_OFF
+			toss_obj.find_child("PocketWatch").show()
+			toss_obj.find_child("PocketWatch").physics_interpolation_mode = Node.PHYSICS_INTERPOLATION_MODE_ON
+			toss_obj.find_child("PocketWatchCollisionShape").show()
+			toss_obj.find_child("PocketWatchCollisionShape").physics_interpolation_mode = \
 			  Node.PHYSICS_INTERPOLATION_MODE_ON
 		_:
 			pass

@@ -40,6 +40,27 @@ func _unhandled_input(event: InputEvent) -> void:
 			if not LevelProvider.level.ground_marker.visible:
 				LevelProvider.level.ground_marker.show()
 
+func set_player_magnetism(rank: int) -> void:
+	match rank:
+		3:
+			magnetic_field.monitoring = true
+			magnetic_field.visible = true
+			magnetic_field.find_child("CollisionShape3D").shape.radius = 2.87
+			magnetic_field.find_child("Magnet").scale = Vector3(2.0, 1.35, 2.0)
+		2:
+			magnetic_field.monitoring = true
+			magnetic_field.visible = true
+			magnetic_field.find_child("CollisionShape3D").shape.radius = 2.5
+			magnetic_field.find_child("Magnet").scale = Vector3(1.67, 1.3, 1.67)
+		1:
+			magnetic_field.monitoring = true
+			magnetic_field.visible = true
+			magnetic_field.find_child("CollisionShape3D").shape.radius = 1.87
+			magnetic_field.find_child("Magnet").scale = Vector3(1.25, 1.25, 1.25)
+		_:
+			magnetic_field.monitoring = false
+			magnetic_field.visible = false
+
 func _on_magnetic_field_area_entered(area: Area3D) -> void:
 	if area is Money:
 		area.is_attracted_to_player = true
