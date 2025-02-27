@@ -17,7 +17,7 @@ static var object_weights: Dictionary = {
 	TossObject.COIN: 50,
 	TossObject.MONEYBUNDLE: 8,
 	TossObject.MONEYBAG: 3,
-	TossObject.POCKETWATCH: 2,
+	TossObject.POCKETWATCH: 1,
 }
 
 const COIN_VALUE: int = 100

@@ -43,7 +43,9 @@ func stop_game() -> void:
 	active_game = false
 	get_tree().paused = true
 	LevelProvider.save_file.money += LevelProvider.level.player.money
-	main_menu.display_last_earned(LevelProvider.level.player.money)
+	LevelProvider.last_time = LevelProvider.level.game_timer.wait_time - \
+	  LevelProvider.level.game_timer.time_left
+	main_menu.display_last_stats(LevelProvider.level.player.money)
 	LevelProvider.level.queue_free()
 	level_manager.load_level()
 	main_menu.show()

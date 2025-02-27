@@ -1,9 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://bt8t5otsw6dxx"]
+[gd_scene load_steps=11 format=3 uid="uid://bt8t5otsw6dxx"]
 
 [ext_resource type="Script" path="res://scripts/item_card.gd" id="1_b81ic"]
 [ext_resource type="FontFile" uid="uid://x8r7xm2n3h5q" path="res://assets/fonts/ZCOOLQingKeHuangYou-Regular.ttf" id="1_pek6v"]
 [ext_resource type="FontFile" uid="uid://o68r33fxemg2" path="res://assets/fonts/Silkscreen-Regular.ttf" id="2_rek5l"]
 [ext_resource type="StyleBox" uid="uid://df2yhi5wwfyen" path="res://resources/main_menu_button_style_normal.tres" id="3_wc2ur"]
+[ext_resource type="StyleBox" uid="uid://c6ia1gqyn7i3b" path="res://resources/main_menu_button_style_hover.tres" id="4_nnl7f"]
+[ext_resource type="StyleBox" uid="uid://bq4hbjhtjpao8" path="res://resources/main_menu_button_style_pressed.tres" id="6_filxm"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xjvs7"]
 bg_color = Color(0, 0.666667, 1, 1)
@@ -31,9 +33,9 @@ Button/colors/font_color = Color(1, 1, 1, 1)
 Button/constants/outline_size = 4
 Button/font_sizes/font_size = 16
 Button/fonts/font = ExtResource("2_rek5l")
-Button/styles/hover = ExtResource("3_wc2ur")
+Button/styles/hover = ExtResource("4_nnl7f")
 Button/styles/normal = ExtResource("3_wc2ur")
-Button/styles/pressed = ExtResource("3_wc2ur")
+Button/styles/pressed = ExtResource("6_filxm")
 
 [node name="ItemCard" type="PanelContainer"]
 custom_minimum_size = Vector2(200, 240)

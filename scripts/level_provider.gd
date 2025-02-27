@@ -4,6 +4,7 @@ var save_file: SaveFile
 var level: Level
 
 var last_earned: int = -1
+var last_time: int = -1
 
 const SPEED_RANKS: int = 5
 const TIME_RANKS: int = 5
