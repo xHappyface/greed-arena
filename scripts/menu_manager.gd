@@ -4,7 +4,7 @@ class_name MenuManager
 @onready var menus: Array[Control] = [
 	$MainMenu,
 	$OptionsMenu,
-	$Shop
+	$Shop,
 ]
 
 enum Menu {

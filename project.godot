@@ -25,10 +25,9 @@ LevelProvider="*res://scripts/level_provider.gd"
 
 [display]
 
-window/size/viewport_width=1920
-window/size/viewport_height=1080
-window/size/mode=3
-window/size/borderless=true
+window/size/viewport_width=3840
+window/size/viewport_height=2150
+window/size/resizable=false
 window/stretch/mode="viewport"
 window/stretch/aspect="keep_height"
 

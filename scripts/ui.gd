@@ -1,8 +1,9 @@
 extends Control
 class_name UI
 
-@onready var money: Label = $VBoxContainer/Money
-@onready var time: Label = $VBoxContainer/Time
+@onready var stats: VBoxContainer = $Stats
+@onready var money: Label = $Stats/Money
+@onready var time: Label = $Stats/Time
 @onready var pause_screen: Label = $Paused
 
 func _ready() -> void:

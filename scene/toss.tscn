@@ -284,6 +284,7 @@ script = ExtResource("1_rxwle")
 
 [node name="PathFollow3D" type="PathFollow3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -25)
+progress = 32.2417
 rotation_mode = 0
 loop = false
 

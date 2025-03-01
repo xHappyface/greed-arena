@@ -1,10 +1,11 @@
 extends Control
 class_name MainMenu
 
+@onready var title: Label = $VBoxContainer/Title
 @onready var last_earned: Label = $VBoxContainer/LastEarned
-@onready var last_earned_spacer: Control = $VBoxContainer/Spacer64Y
+@onready var last_earned_spacer: Control = $VBoxContainer/Spacer128Y
 @onready var last_time: Label = $VBoxContainer/LastTime
-@onready var last_time_space: Control = $VBoxContainer/Spacer4Y3
+@onready var last_time_space: Control = $VBoxContainer/Spacer8Y3
 
 func display_last_stats(money: int) -> void:
 	last_earned.text = "Last Earned: $%s" % [Util.human_readable_number(money)]

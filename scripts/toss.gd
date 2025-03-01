@@ -62,17 +62,19 @@ static func create_new(object_type: TossObject = TossObject.COIN) -> Toss:
 	toss.toss_object_type = object_type
 	return toss
 
-static func random_toss_object() -> TossObject:
-	var total_weight: int = 0
-	for weight in object_weights.values():
-		total_weight += weight
-	var rand: int = randi_range(0, total_weight)
-	for obj in object_weights.keys():
-		if rand <= object_weights[obj]:
-			return obj
-		else:
-			rand -= object_weights[obj]
-	return TossObject.COIN
+static func set_money_weights() -> void:
+	var money_bundle_rank: int = LevelProvider.ranks[LevelProvider.Rank.MONEY_BUNDLE]
+	var money_bag_rank: int = LevelProvider.ranks[LevelProvider.Rank.MONEY_BAG]
+	match money_bundle_rank:
+		3:
+			object_weights[TossObject.MONEYBUNDLE] = 21
+		2:
+			object_weights[TossObject.MONEYBUNDLE] = 15
+		1:
+			object_weights[TossObject.MONEYBUNDLE] = 12
+		_:
+			pass
+	object_weights[TossObject.MONEYBAG] += money_bag_rank * 2
 
 func _physics_process(_delta: float) -> void:
 	if player and toss_object.overlaps_body(player):
@@ -85,3 +87,15 @@ func _physics_process(_delta: float) -> void:
 			_:
 				player.money += COIN_VALUE
 		print(player.money)
+
+static func random_toss_object() -> TossObject:
+	var total_weight: int = 0
+	for weight in object_weights.values():
+		total_weight += weight
+	var rand: int = randi_range(0, total_weight)
+	for obj in object_weights.keys():
+		if rand <= object_weights[obj]:
+			return obj
+		else:
+			rand -= object_weights[obj]
+	return TossObject.COIN
