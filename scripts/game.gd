@@ -30,7 +30,7 @@ func _init() -> void:
 
 func _ready() -> void:
 	get_tree().paused = true
-	set_resolution(Resolution.p1920x1080)
+	set_resolution(Resolution.p1280x720)
 	options_menu.audio_volume_slider.value = LevelProvider.save_file.options_audio_volume
 	options_menu.audio_mute_checkbox.button_pressed = LevelProvider.save_file.options_audio_mute
 	Toss.set_money_weights()
