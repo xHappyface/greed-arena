@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://bjud2be8l0dw8"]
+
+[ext_resource type="Script" path="res://scripts/custom_checkbox.gd" id="1_106uc"]
+[ext_resource type="Texture2D" uid="uid://c10lkebykfqwl" path="res://assets/images/check_128dp_E8EAED_FILL0_wght400_GRAD0_opsz48.svg" id="1_rqxe1"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g3dsu"]
+bg_color = Color(0.168627, 0.164706, 0.2, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b2bcm"]
+bg_color = Color(0.168627, 0.164706, 0.2, 1)
+
+[sub_resource type="Theme" id="Theme_k23jv"]
+Button/styles/normal = SubResource("StyleBoxFlat_g3dsu")
+_Checked/base_type = &"Button"
+_Checked/icons/icon = ExtResource("1_rqxe1")
+_Checked/styles/pressed = SubResource("StyleBoxFlat_b2bcm")
+
+[node name="CustomCheckbox" type="Button"]
+custom_minimum_size = Vector2(128, 128)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -64.0
+offset_top = -64.0
+offset_right = 64.0
+offset_bottom = 64.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = SubResource("Theme_k23jv")
+toggle_mode = true
+script = ExtResource("1_106uc")

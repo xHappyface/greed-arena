@@ -2,7 +2,7 @@ extends Control
 class_name OptionsMenu
 
 @onready var audio_volume_slider: HSlider = $VBoxContainer/Volume/HSlider
-@onready var audio_mute_checkbox: CheckBox = $VBoxContainer/Mute/CheckBox
+@onready var audio_mute_checkbox: CustomCheckbox = $VBoxContainer/Mute/CustomCheckbox
 
 static func set_mute(state: bool) -> void:
 	AudioServer.set_bus_mute(0, state)

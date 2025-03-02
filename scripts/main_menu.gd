@@ -10,7 +10,7 @@ class_name MainMenu
 func display_last_stats(money: int) -> void:
 	last_earned.text = "Last Earned: $%s" % [Util.human_readable_number(money)]
 	last_time.text = "Last Time: %02d:%02d" % \
-	  [LevelProvider.last_time / 60, LevelProvider.last_time % 60]
+	  [int(LevelProvider.last_time) / 60, LevelProvider.last_time % 60]
 	queue_redraw()
 	if not last_earned.visible:
 		last_earned.show()

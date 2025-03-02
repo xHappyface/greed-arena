@@ -44,10 +44,10 @@ func _on_money_spawner_timeout() -> void:
 	var toss: Toss = Toss.create_new(toss_object)
 	_spawn_at_random_tosser(toss)
 	toss.player = player
-	if toss_object != Toss.TossObject.POCKETWATCH:
+	if not Toss.held_items.has(toss_object):
 		toss.toss_object.connect("tree_exited", level_manager.ui.update_money)
 	else:
-		toss.toss_object.connect("tree_exited", LevelProvider.slow_time)
+		toss.toss_object.connect("tree_exited", LevelProvider.level.level_manager.ui.add_held_item.bind(toss_object))
 
 func _on_money_spawner2_timeout() -> void:
 	money_spawner2.wait_time = money_spawner2_curve.sample(game_timer.time_left / game_timer.wait_time)
@@ -55,10 +55,10 @@ func _on_money_spawner2_timeout() -> void:
 	var toss: Toss = Toss.create_new(toss_object)
 	_spawn_at_random_tosser(toss)
 	toss.player = player
-	if toss_object != Toss.TossObject.POCKETWATCH:
+	if not Toss.held_items.has(toss_object):
 		toss.toss_object.connect("tree_exited", level_manager.ui.update_money)
 	else:
-		toss.toss_object.connect("tree_exited", LevelProvider.slow_time)
+		toss.toss_object.connect("tree_exited", LevelProvider.level.level_manager.ui.add_held_item.bind(toss_object))
 
 func _on_money_spawner3_timeout() -> void:
 	money_spawner3.wait_time = money_spawner3_curve.sample(game_timer.time_left / game_timer.wait_time)
@@ -66,10 +66,10 @@ func _on_money_spawner3_timeout() -> void:
 	var toss: Toss = Toss.create_new(toss_object)
 	_spawn_at_random_tosser(toss)
 	toss.player = player
-	if toss_object != Toss.TossObject.POCKETWATCH:
+	if not Toss.held_items.has(toss_object):
 		toss.toss_object.connect("tree_exited", level_manager.ui.update_money)
 	else:
-		toss.toss_object.connect("tree_exited", LevelProvider.slow_time)
+		toss.toss_object.connect("tree_exited", LevelProvider.level.level_manager.ui.add_held_item.bind(toss_object))
 
 func _on_bomb_spawner_timeout() -> void:
 	bomb_spawner.wait_time = bomb_spawner_curve.sample(game_timer.time_left / game_timer.wait_time)

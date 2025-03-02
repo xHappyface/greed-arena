@@ -12,6 +12,10 @@ const SPEED_GROWTH_RATE: float = 100.0
 
 var money: int = 0
 var speed: float = BASE_SPEED
+var held_items: Array[Toss.TossObject] = []
+
+static func get_real_speed() -> float:
+	return BASE_SPEED + (LevelProvider.ranks[LevelProvider.Rank.SPEED] * SPEED_GROWTH_RATE)
 
 func _ready() -> void:
 	camera = get_parent().find_child("Camera3D")
@@ -39,6 +43,16 @@ func _unhandled_input(event: InputEvent) -> void:
 			LevelProvider.level.ground_marker.position = nav.target_position
 			if not LevelProvider.level.ground_marker.visible:
 				LevelProvider.level.ground_marker.show()
+	elif event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_RIGHT and event.is_pressed():
+		if held_items.size() > 0:
+			var item: Toss.TossObject = held_items.pop_front()
+			if LevelProvider.level.level_manager.ui.held_item_slots.get_child(0).get_child(0).visible:
+				LevelProvider.level.level_manager.ui.held_item_slots.get_child(0).get_child(0).hide()
+			else:
+				LevelProvider.level.level_manager.ui.held_item_slots.get_child(1).get_child(0).hide()
+			match item:
+				_:
+					LevelProvider.slow_time()
 
 func set_player_magnetism(rank: int) -> void:
 	match rank:

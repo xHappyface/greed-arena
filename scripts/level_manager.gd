@@ -9,7 +9,6 @@ class_name LevelManager
 
 func _ready() -> void:
 	load_level()
-	game_viewport.size = DisplayServer.window_get_size()
 
 func load_level() -> void:
 	if level_scene.can_instantiate():

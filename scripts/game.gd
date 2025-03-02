@@ -49,8 +49,7 @@ func start_game() -> void:
 	active_game = true
 	Engine.time_scale = 1.0
 	LevelProvider.level.player.money = 0
-	LevelProvider.level.player.speed = LevelProvider.level.player.BASE_SPEED + \
-	  (LevelProvider.ranks[LevelProvider.Rank.SPEED] * LevelProvider.level.player.SPEED_GROWTH_RATE)
+	LevelProvider.level.player.speed = Player.get_real_speed()
 	ui.update_money()
 	LevelProvider.level.player.set_player_magnetism(LevelProvider.ranks[LevelProvider.Rank.MAGNET])
 	main_menu.hide()
@@ -62,8 +61,8 @@ func stop_game() -> void:
 	active_game = false
 	get_tree().paused = true
 	LevelProvider.save_file.money += LevelProvider.level.player.money
-	LevelProvider.last_time = LevelProvider.level.game_timer.wait_time - \
-	  LevelProvider.level.game_timer.time_left
+	LevelProvider.last_time = int(LevelProvider.level.game_timer.wait_time) - \
+	  int(LevelProvider.level.game_timer.time_left)
 	main_menu.display_last_stats(LevelProvider.level.player.money)
 	LevelProvider.level.queue_free()
 	level_manager.load_level()

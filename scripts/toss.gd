@@ -20,6 +20,10 @@ static var object_weights: Dictionary = {
 	TossObject.POCKETWATCH: 1,
 }
 
+static var held_items: Dictionary = {
+	TossObject.POCKETWATCH: true,
+}
+
 const COIN_VALUE: int = 100
 const MONEYBUNDLE_VALUE = 1_000
 const MONEYBAG_VALUE: int = 6_000
