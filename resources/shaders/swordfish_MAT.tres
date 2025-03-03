@@ -1,0 +1,7 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://cp2xi8wab5guh"]
+
+[ext_resource type="Shader" uid="uid://ddcmalbak1gkw" path="res://resources/shaders/swordfish_SHADER.tres" id="1_dyiol"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_dyiol")
