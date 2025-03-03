@@ -42,6 +42,11 @@ Arena=""
 scene={
 "meshes/generate_lods": false
 }
+texture={
+"compress/high_quality": true,
+"compress/mode": 2,
+"detect_3d/compress_to": 0
+}
 
 [input]
 

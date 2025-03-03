@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://7r4mvortg1jf"
-path.bptc="res://.godot/imported/Shield_AO_128.png-dfd3feb41f9db7f4f685a402582e0a07.bptc.ctex"
+uid="uid://xbuiru0sfrpa"
+path.bptc="res://.godot/imported/swordfish_DIFFUSE_512.png-e22f9871c5df3d67358a4c3bcfb8cfc0.bptc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://resources/textures/Shield_AO_128.png"
-dest_files=["res://.godot/imported/Shield_AO_128.png-dfd3feb41f9db7f4f685a402582e0a07.bptc.ctex"]
+source_file="res://resources/textures/swordfish_DIFFUSE_512.png"
+dest_files=["res://.godot/imported/swordfish_DIFFUSE_512.png-e22f9871c5df3d67358a4c3bcfb8cfc0.bptc.ctex"]
 
 [params]
 
@@ -22,7 +22,7 @@ compress/lossy_quality=0.7
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=true
+mipmaps/generate=false
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""
