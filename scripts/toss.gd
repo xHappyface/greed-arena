@@ -18,8 +18,8 @@ static var object_weights: Dictionary = {
 	TossObject.COIN: 50,
 	TossObject.MONEYBUNDLE: 8,
 	TossObject.MONEYBAG: 3,
-	TossObject.POCKETWATCH: 1,
-	TossObject.SHIELD: 1,
+	TossObject.POCKETWATCH: 2,
+	TossObject.SHIELD: 2,
 }
 
 static var held_items: Dictionary = {
