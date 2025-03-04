@@ -1,4 +1,4 @@
-[gd_resource type="VisualShader" load_steps=28 format=3 uid="uid://dno2lwryducgh"]
+[gd_resource type="VisualShader" load_steps=28 format=3 uid="uid://ba5m0alyj8eay"]
 
 [ext_resource type="Texture2D" uid="uid://7r4mvortg1jf" path="res://resources/textures/Shield_AO_128.png" id="1_dnfgf"]
 
@@ -195,7 +195,6 @@ void fragment() {
 
 }
 "
-graph_offset = Vector2(-801.094, -84.1295)
 nodes/fragment/0/position = Vector2(1060, 480)
 nodes/fragment/2/node = SubResource("VisualShaderNodeTexture_mrcly")
 nodes/fragment/2/position = Vector2(-2640, 520)
