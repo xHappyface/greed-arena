@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://cleh4joiyq37l"
-path="res://.godot/imported/magno_sphere_outside.glb-dc39190dd14dc566835b5999052905a3.scn"
+uid="uid://dsdjae2lcwlrs"
+path="res://.godot/imported/MagnoSphereCore.glb-ee7d3820d996bcb9e6090b8bf687158e.scn"
 
 [deps]
 
-source_file="res://assets/models/fx/magno_sphere_outside.glb"
-dest_files=["res://.godot/imported/magno_sphere_outside.glb-dc39190dd14dc566835b5999052905a3.scn"]
+source_file="res://assets/models/fx/MagnoSphereCore.glb"
+dest_files=["res://.godot/imported/MagnoSphereCore.glb-ee7d3820d996bcb9e6090b8bf687158e.scn"]
 
 [params]
 
@@ -33,9 +33,9 @@ animation/import_rest_as_RESET=false
 import_script/path=""
 _subresources={
 "materials": {
-"Material.006": {
+"Material.007": {
 "use_external/enabled": true,
-"use_external/path": "res://resources/shaders/MagnoSphereOutside_MAT.tres"
+"use_external/path": "res://resources/shaders/MagnoSphereCore_MAT.tres"
 }
 }
 }

@@ -1,6 +1,6 @@
-[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://b8jmc80rgiryq"]
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://bespbrahswxna"]
 
-[ext_resource type="Shader" uid="uid://dno2lwryducgh" path="res://resources/shaders/Shield_SHADER.tres" id="1_6etmx"]
+[ext_resource type="Shader" uid="uid://ba5m0alyj8eay" path="res://resources/shaders/Shield_SHADER.tres" id="1_6etmx"]
 [ext_resource type="Texture2D" uid="uid://7r4mvortg1jf" path="res://resources/textures/Shield_AO_128.png" id="2_d50b7"]
 
 [resource]
