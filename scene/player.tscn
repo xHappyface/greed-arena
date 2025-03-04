@@ -1,6 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://5xjrlqdulx2k"]
+[gd_scene load_steps=13 format=3 uid="uid://5xjrlqdulx2k"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_rw3mr"]
+[ext_resource type="PackedScene" uid="uid://dsdjae2lcwlrs" path="res://assets/models/fx/MagnoSphereCore.glb" id="2_352wy"]
+[ext_resource type="PackedScene" uid="uid://dn657ror34tol" path="res://assets/models/fx/MagnoSphereInside.glb" id="3_1ohqh"]
+[ext_resource type="PackedScene" uid="uid://cmo02tqnkjj" path="res://assets/models/fx/MagnoSphereOutside.glb" id="4_j3ebi"]
+[ext_resource type="PackedScene" uid="uid://d1rjtos5xeyq7" path="res://assets/models/Shield.glb" id="5_ygd6d"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o0gs1"]
 albedo_color = Color(1, 0, 0, 1)
@@ -78,7 +82,6 @@ target_desired_distance = 0.67
 
 [node name="MagneticField" type="Area3D" parent="."]
 transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 0, 0, 0)
-visible = false
 monitoring = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MagneticField"]
@@ -87,11 +90,33 @@ shape = SubResource("CylinderShape3D_0fjtc")
 
 [node name="Magnet" type="Node3D" parent="MagneticField"]
 transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 0, 0, 0)
+visible = false
+
+[node name="MagnoSphereCore" parent="MagneticField/Magnet" instance=ExtResource("2_352wy")]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0.4, 0)
+
+[node name="MagnoSphereInside" parent="MagneticField/Magnet" instance=ExtResource("3_1ohqh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
+
+[node name="MagnoSphereOutside" parent="MagneticField/Magnet" instance=ExtResource("4_j3ebi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
 
 [node name="Shield" type="Node3D" parent="."]
 transform = Transform3D(-1, 0, -2.53518e-06, 0, 1, 0, 2.53518e-06, 0, -1, 0, 0.5, 0)
 top_level = true
 visible = false
+
+[node name="Shield" parent="Shield" instance=ExtResource("5_ygd6d")]
+transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 0.75, 1.35)
+
+[node name="Shield2" parent="Shield" instance=ExtResource("5_ygd6d")]
+transform = Transform3D(-4.37114e-08, -0.707107, 0.707107, 0, 0.707107, 0.707107, -1, 3.09086e-08, -3.09086e-08, 1.35, 0.75, 0)
+
+[node name="Shield3" parent="Shield" instance=ExtResource("5_ygd6d")]
+transform = Transform3D(-4.37114e-08, 0.707107, -0.707107, 0, 0.707107, 0.707107, 1, 3.09086e-08, -3.09086e-08, -1.35, 0.75, 0)
+
+[node name="Shield4" parent="Shield" instance=ExtResource("5_ygd6d")]
+transform = Transform3D(-1, 6.18172e-08, -6.18172e-08, 0, 0.707107, 0.707107, 8.74228e-08, 0.707107, -0.707107, 0, 0.75, -1.35)
 
 [node name="Timer" type="Timer" parent="Shield"]
 wait_time = 3.0

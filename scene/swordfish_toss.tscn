@@ -1,4 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://d1wl0ll6k5kfx"]
+[gd_scene load_steps=3 format=3 uid="uid://d1wl0ll6k5kfx"]
+
+[ext_resource type="PackedScene" uid="uid://bv4e41lp83ak0" path="res://assets/models/SwordFish.glb" id="1_t1vws"]
 
 [sub_resource type="Curve3D" id="Curve3D_527ah"]
 _data = {
@@ -11,3 +13,5 @@ point_count = 2
 curve = SubResource("Curve3D_527ah")
 
 [node name="PathFollow3D" type="PathFollow3D" parent="."]
+
+[node name="SwordFish" parent="PathFollow3D" instance=ExtResource("1_t1vws")]

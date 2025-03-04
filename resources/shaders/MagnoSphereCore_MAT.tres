@@ -1,7 +1,0 @@
-[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://dsb18i51nufcd"]
-
-[ext_resource type="Shader" uid="uid://76jl3mu2gtid" path="res://resources/shaders/MagnoSphereCore_SHADER.tres" id="1_w5gi2"]
-
-[resource]
-render_priority = 1
-shader = ExtResource("1_w5gi2")
