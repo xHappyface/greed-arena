@@ -3,12 +3,14 @@ class_name Player
 
 @onready var nav: NavigationAgent3D = $NavigationAgent3D
 @onready var magnetic_field: Area3D = $MagneticField
+@onready var shield: Node3D = $Shield
+@onready var shield_timer: Timer = $Shield/Timer
 
 var camera: Camera3D = null
 var camera_ray: RayCast3D = null
 
-const BASE_SPEED: float = 1_000.0
-const SPEED_GROWTH_RATE: float = 100.0
+const BASE_SPEED: float = 850.0
+const SPEED_GROWTH_RATE: float = 75.0
 
 var money: int = 0
 var speed: float = BASE_SPEED
@@ -22,6 +24,7 @@ func _ready() -> void:
 	camera_ray = camera.find_child("RayCast3D")
 
 func _physics_process(delta: float) -> void:
+	shield.global_position = Vector3(global_position.x, 0.6, global_position.z)
 	if nav.is_navigation_finished():
 		if LevelProvider.level.ground_marker.visible:
 			LevelProvider.level.ground_marker.hide()
@@ -46,11 +49,18 @@ func _unhandled_input(event: InputEvent) -> void:
 	elif event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_RIGHT and event.is_pressed():
 		if held_items.size() > 0:
 			var item: Toss.TossObject = held_items.pop_front()
-			if LevelProvider.level.level_manager.ui.held_item_slots.get_child(0).get_child(0).visible:
-				LevelProvider.level.level_manager.ui.held_item_slots.get_child(0).get_child(0).hide()
+			if LevelProvider.level.level_manager.ui.held_item_slot2.visible:
+				LevelProvider.level.level_manager.ui.held_item_slot2.hide()
+				LevelProvider.level.level_manager.ui.held_item_slot1.texture = \
+				  LevelProvider.level.level_manager.ui.held_item_slot2.texture
 			else:
-				LevelProvider.level.level_manager.ui.held_item_slots.get_child(1).get_child(0).hide()
+				LevelProvider.level.level_manager.ui.held_item_slot1.hide()
 			match item:
+				Toss.TossObject.SHIELD:
+					shield_timer.stop()
+					if not shield.visible:
+						shield.show()
+					shield_timer.start()
 				_:
 					LevelProvider.slow_time()
 
@@ -82,3 +92,6 @@ func _on_magnetic_field_area_entered(area: Area3D) -> void:
 func _on_magnetic_field_area_exited(area: Area3D) -> void:
 	if area is Money:
 		area.is_attracted_to_player = false
+
+func _hide_shield() -> void:
+	shield.hide()

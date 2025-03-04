@@ -11,6 +11,7 @@ enum TossObject {
 	MONEYBUNDLE,
 	MONEYBAG,
 	POCKETWATCH,
+	SHIELD,
 }
 
 static var object_weights: Dictionary = {
@@ -18,10 +19,12 @@ static var object_weights: Dictionary = {
 	TossObject.MONEYBUNDLE: 8,
 	TossObject.MONEYBAG: 3,
 	TossObject.POCKETWATCH: 1,
+	TossObject.SHIELD: 1,
 }
 
 static var held_items: Dictionary = {
 	TossObject.POCKETWATCH: true,
+	TossObject.SHIELD: true,
 }
 
 const COIN_VALUE: int = 100
@@ -60,6 +63,15 @@ static func create_new(object_type: TossObject = TossObject.COIN) -> Toss:
 			toss_obj.find_child("PocketWatch").physics_interpolation_mode = Node.PHYSICS_INTERPOLATION_MODE_ON
 			toss_obj.find_child("PocketWatchCollisionShape").show()
 			toss_obj.find_child("PocketWatchCollisionShape").physics_interpolation_mode = \
+			  Node.PHYSICS_INTERPOLATION_MODE_ON
+		TossObject.SHIELD:
+			for child in toss_obj.get_children():
+				child.hide()
+				child.physics_interpolation_mode = Node.PHYSICS_INTERPOLATION_MODE_OFF
+			toss_obj.find_child("Shield").show()
+			toss_obj.find_child("Shield").physics_interpolation_mode = Node.PHYSICS_INTERPOLATION_MODE_ON
+			toss_obj.find_child("ShieldCollisionShape").show()
+			toss_obj.find_child("ShieldCollisionShape").physics_interpolation_mode = \
 			  Node.PHYSICS_INTERPOLATION_MODE_ON
 		_:
 			pass

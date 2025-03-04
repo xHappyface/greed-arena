@@ -41,7 +41,7 @@ func increment_rank(rank: LevelProvider.Rank) -> void:
 			max_rank = LevelProvider.SPEED_RANKS
 			update_card = _update_speed_card
 	if LevelProvider.save_file.money >= 100_000 and \
-	  LevelProvider.ranks[rank] != LevelProvider.SPEED_RANKS:
+	  LevelProvider.ranks[rank] != max_rank:
 		_charge_player(100_000)
 		LevelProvider.ranks[rank] += 1
 		LevelProvider.ranks[rank] = clamp(LevelProvider.ranks[rank], 0, max_rank)

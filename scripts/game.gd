@@ -4,7 +4,7 @@ class_name Game
 @onready var save_file_resource: Resource = preload("res://scripts/save_file.gd")
 
 @onready var level_manager: LevelManager = $LevelManager
-@onready var ui: Control = $LevelManager/UI
+@onready var ui: UI = $LevelManager/UI
 @onready var main_menu: MainMenu = $Menu/MainMenu
 @onready var options_menu: OptionsMenu = $Menu/OptionsMenu
 @onready var shop_menu: ShopMenu = $Menu/Shop
@@ -48,10 +48,13 @@ func _process(_delta: float) -> void:
 func start_game() -> void:
 	active_game = true
 	Engine.time_scale = 1.0
+	LevelProvider.level.player.held_items = []
 	LevelProvider.level.player.money = 0
 	LevelProvider.level.player.speed = Player.get_real_speed()
 	ui.update_money()
 	LevelProvider.level.player.set_player_magnetism(LevelProvider.ranks[LevelProvider.Rank.MAGNET])
+	ui.held_item_slot1.hide()
+	ui.held_item_slot2.hide()
 	main_menu.hide()
 	get_tree().paused = false
 	print("MONEYBUNDLE RATE: %d" % [Toss.object_weights[Toss.TossObject.MONEYBUNDLE]])
@@ -60,6 +63,7 @@ func start_game() -> void:
 func stop_game() -> void:
 	active_game = false
 	get_tree().paused = true
+	LevelProvider.level.player.held_items = []
 	LevelProvider.save_file.money += LevelProvider.level.player.money
 	LevelProvider.last_time = int(LevelProvider.level.game_timer.wait_time) - \
 	  int(LevelProvider.level.game_timer.time_left)
@@ -67,6 +71,8 @@ func stop_game() -> void:
 	LevelProvider.level.queue_free()
 	level_manager.load_level()
 	main_menu.show()
+	ui.held_item_slot1.hide()
+	ui.held_item_slot2.hide()
 	LevelProvider.save_file.save_game()
 
 func set_resolution(resolution: Resolution) -> void:
