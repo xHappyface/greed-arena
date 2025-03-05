@@ -1,0 +1,67 @@
+[gd_scene load_steps=7 format=3 uid="uid://d1wl0ll6k5kfx"]
+
+[ext_resource type="Script" path="res://scripts/swordfish_toss.gd" id="1_gdija"]
+[ext_resource type="PackedScene" uid="uid://h0jwvkjrulp3" path="res://scene/sword_fish.tscn" id="2_1urrm"]
+
+[sub_resource type="Curve3D" id="Curve3D_527ah"]
+resource_local_to_scene = true
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -90),
+"tilts": PackedFloat32Array(0, 0)
+}
+point_count = 2
+
+[sub_resource type="Animation" id="Animation_qusk6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PathFollow3D:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_h5uum"]
+resource_name = "swim"
+length = 8.0
+step = 1.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PathFollow3D:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4074e"]
+_data = {
+"RESET": SubResource("Animation_qusk6"),
+"swim": SubResource("Animation_h5uum")
+}
+
+[node name="SwordfishToss" type="Path3D"]
+curve = SubResource("Curve3D_527ah")
+script = ExtResource("1_gdija")
+
+[node name="PathFollow3D" type="PathFollow3D" parent="."]
+
+[node name="SwordFish" parent="PathFollow3D" instance=ExtResource("2_1urrm")]
+transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 0, 0, 0)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_4074e")
+}
+autoplay = "swim"
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_finished"]

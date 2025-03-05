@@ -23,12 +23,7 @@ func _explode() -> void:
 	var blast_bodies: Array[Node3D] = blast.get_overlapping_bodies()
 	for body in blast_bodies:
 		if body is Player:
-			if body.shield.visible:
-				body.shield_timer.stop()
-				body.shield.hide()
-			else:
-				print("GAME OVER")
-				LevelProvider.level.level_manager.get_parent().stop_game()
+			body.take_hit()
 	for body in shockwave_bodies:
 		if body == self:
 			continue

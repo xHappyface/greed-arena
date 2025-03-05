@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cykeqoq2o75vu" path="res://assets/models/MoneyBundle.glb" id="3_a001k"]
 [ext_resource type="PackedScene" uid="uid://cc1k24ayb25y3" path="res://assets/models/MoneyBag.glb" id="3_oyag6"]
 [ext_resource type="PackedScene" uid="uid://bn7srn0v22bpv" path="res://assets/models/PocketWatch.glb" id="6_6ayst"]
-[ext_resource type="PackedScene" uid="uid://bfaccalcl7osm" path="res://assets/models/Shield.glb" id="7_lkvvt"]
+[ext_resource type="PackedScene" uid="uid://d1rjtos5xeyq7" path="res://assets/models/Shield.glb" id="7_lkvvt"]
 
 [sub_resource type="Curve3D" id="Curve3D_rh4cb"]
 resource_local_to_scene = true

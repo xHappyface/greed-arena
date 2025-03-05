@@ -12,6 +12,7 @@ class_name Level
 
 @onready var arena_mesh: MeshInstance3D = $WorldObjects/NavigationRegion3D/MeshInstance3D
 @onready var tossers: Node = $Tossers
+@onready var swordfish_tossers: Node = $SwordfishTossers
 @onready var game_timer: Timer = $Timers/GameTimer
 @onready var money_spawner: Timer = $Timers/MoneySpawner
 @onready var money_spawner2: Timer = $Timers/MoneySpawner2
@@ -91,6 +92,7 @@ func _spawn_at_random_tosser(toss_scene_instance: Path3D) -> void:
 		return
 	var tosser: Node3D = tossers.get_children().pick_random()
 	tosser.add_child(toss_scene_instance)
+	toss_scene_instance.set("point_0/position", tosser.global_position)
 	toss_scene_instance.curve.set("point_1/position", -tosser.position + _random_drop_point())
 	print("spawn: %s\ntarget: %s\n" % [toss_scene_instance.global_position, \
 	  toss_scene_instance.curve.get("point_1/position")])

@@ -5,4 +5,4 @@
 [resource]
 render_priority = 0
 shader = ExtResource("1_dyiol")
-shader_parameter/World_Noise_Scale = 1.0
+shader_parameter/World_Noise_Scale = 3.0

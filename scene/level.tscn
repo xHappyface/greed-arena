@@ -1,10 +1,11 @@
-[gd_scene load_steps=28 format=3 uid="uid://mycvdum3j3e7"]
+[gd_scene load_steps=29 format=3 uid="uid://mycvdum3j3e7"]
 
 [ext_resource type="PackedScene" uid="uid://5xjrlqdulx2k" path="res://scene/player.tscn" id="1_4lwku"]
 [ext_resource type="Script" path="res://scripts/level.gd" id="1_e06ki"]
 [ext_resource type="PackedScene" uid="uid://dwflaugcjnkcj" path="res://scene/ground_marker.tscn" id="3_4eoms"]
 [ext_resource type="PackedScene" uid="uid://had3vaqtgdyv" path="res://assets/models/ArenaApron.glb" id="4_emtkf"]
 [ext_resource type="PackedScene" uid="uid://dendrx1cl3lvj" path="res://assets/models/ArenaCornerPole.glb" id="5_5be5a"]
+[ext_resource type="PackedScene" uid="uid://h0jwvkjrulp3" path="res://scene/swordfish.tscn" id="6_hmbnm"]
 
 [sub_resource type="Curve" id="Curve_o8371"]
 max_value = 5.0
@@ -325,6 +326,62 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.25, 0, 30)
 [node name="Tosser12" type="Node3D" parent="Tossers"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.25, 0, 30)
 
+[node name="Tosser13" type="Node3D" parent="Tossers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30, 0, -6.625)
+
+[node name="Tosser14" type="Node3D" parent="Tossers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30, 0, 6.625)
+
+[node name="Tosser15" type="Node3D" parent="Tossers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 0, -6.625)
+
+[node name="Tosser16" type="Node3D" parent="Tossers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 0, 6.625)
+
+[node name="Tosser17" type="Node3D" parent="Tossers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.625, 0, -30)
+
+[node name="Tosser18" type="Node3D" parent="Tossers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.625, 0, -30)
+
+[node name="Tosser19" type="Node3D" parent="Tossers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.625, 0, 30)
+
+[node name="Tosser20" type="Node3D" parent="Tossers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.625, 0, 30)
+
+[node name="SwordfishTossers" type="Node" parent="."]
+
+[node name="SwordfishTosser1" type="Node3D" parent="SwordfishTossers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 45)
+
+[node name="SwordfishTosser2" type="Node3D" parent="SwordfishTossers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -45)
+
+[node name="SwordfishTosser3" type="Node3D" parent="SwordfishTossers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.25, 0.5, 45)
+
+[node name="SwordfishTosser4" type="Node3D" parent="SwordfishTossers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.25, 0.5, -45)
+
+[node name="SwordfishTosser5" type="Node3D" parent="SwordfishTossers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.25, 0.5, 45)
+
+[node name="SwordfishTosser6" type="Node3D" parent="SwordfishTossers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.25, 0.5, -45)
+
+[node name="SwordfishTosser7" type="Node3D" parent="SwordfishTossers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.625, 0.5, 45)
+
+[node name="SwordfishTosser8" type="Node3D" parent="SwordfishTossers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.625, 0.5, -45)
+
+[node name="SwordfishTosser9" type="Node3D" parent="SwordfishTossers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.625, 0.5, 45)
+
+[node name="SwordfishTosser10" type="Node3D" parent="SwordfishTossers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.625, 0.5, -45)
+
 [node name="Timers" type="Node" parent="."]
 
 [node name="GameTimer" type="Timer" parent="Timers"]
@@ -374,6 +431,13 @@ debug_shape_thickness = 5
 
 [node name="GroundMarker" parent="." instance=ExtResource("3_4eoms")]
 visible = false
+
+[node name="SwordFish" parent="." instance=ExtResource("6_hmbnm")]
+transform = Transform3D(-3, 0, -2.62268e-07, 0, 3, 0, 2.62268e-07, 0, -3, 0, 1, 50)
+
+[node name="SwordFish2" parent="." instance=ExtResource("6_hmbnm")]
+transform = Transform3D(-3, 0, -2.62268e-07, 0, 3, 0, 2.62268e-07, 0, -3, 0, 1, 50)
+anim_delay = 36.0
 
 [connection signal="timeout" from="Timers/MoneySpawner" to="." method="_on_money_spawner_timeout"]
 [connection signal="timeout" from="Timers/MoneySpawner2" to="." method="_on_money_spawner2_timeout"]

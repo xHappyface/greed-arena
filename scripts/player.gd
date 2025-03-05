@@ -64,6 +64,14 @@ func _unhandled_input(event: InputEvent) -> void:
 				_:
 					LevelProvider.slow_time()
 
+func take_hit() -> void:
+	if shield.visible:
+		shield_timer.stop()
+		shield.hide()
+	else:
+		print("GAME OVER")
+		LevelProvider.level.level_manager.get_parent().stop_game()
+
 func set_player_magnetism(rank: int) -> void:
 	match rank:
 		3:

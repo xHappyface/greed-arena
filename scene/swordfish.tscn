@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://h0jwvkjrulp3"]
+
+[ext_resource type="PackedScene" uid="uid://bv4e41lp83ak0" path="res://assets/models/SwordFish.glb" id="1_kjbpo"]
+[ext_resource type="Script" path="res://scripts/swordfish.gd" id="2_fby0j"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_dknw0"]
+size = Vector3(0.25, 0.5, 1.125)
+
+[node name="SwordFish" instance=ExtResource("1_kjbpo")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
+script = ExtResource("2_fby0j")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="1"]
+shape = SubResource("BoxShape3D_dknw0")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
