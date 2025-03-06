@@ -34,6 +34,7 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	shield.global_position = Vector3(global_position.x, 0.6, global_position.z)
+	velocity = Vector3.ZERO
 	match input_controls:
 		InputControls.KEYBOARD:
 			_handle_keyboard_movement(delta)
