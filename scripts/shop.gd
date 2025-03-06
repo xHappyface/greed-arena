@@ -49,10 +49,10 @@ func increment_rank(rank: LevelProvider.Rank) -> void:
 		LevelProvider.save_file.save_game()
 
 func increment_time_rank() -> void:
-	if LevelProvider.save_file.money >= 100_000 and LevelProvider.time_rank != LevelProvider.TIME_RANKS:
+	if LevelProvider.save_file.money >= 100_000 and LevelProvider.ranks[LevelProvider.Rank.TIME] != LevelProvider.TIME_RANKS:
 		_charge_player(100_000)
-		LevelProvider.time_rank += 1
-		LevelProvider.time_rank = clamp(LevelProvider.time_rank, 0, LevelProvider.TIME_RANKS)
+		LevelProvider.ranks[LevelProvider.Rank.TIME] += 1
+		LevelProvider.ranks[LevelProvider.Rank.TIME] = clamp(LevelProvider.ranks[LevelProvider.Rank.TIME], 0, LevelProvider.TIME_RANKS)
 		LevelProvider.update_game_timer()
 		get_parent().get_parent().ui.update_time()
 		_update_time_card()
