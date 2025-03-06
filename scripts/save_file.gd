@@ -11,6 +11,7 @@ const PATH: NodePath = "user://save_file.TRES"
 	LevelProvider.Rank.MONEY_BUNDLE: 0,
 	LevelProvider.Rank.MONEY_BAG: 0,
 }
+@export var options_input_controls: Player.InputControls = Player.InputControls.MOUSE
 @export var options_audio_volume: float = 100.0
 @export var options_audio_mute: bool = false
 
@@ -34,6 +35,7 @@ static func load_game() -> SaveFile:
 		  save.ranks[LevelProvider.Rank.MONEY_BUNDLE]
 		LevelProvider.ranks[LevelProvider.Rank.MONEY_BAG] = \
 		  save.ranks[LevelProvider.Rank.MONEY_BAG]
+		OptionsMenu.set_input_controls(save.options_input_controls)
 		OptionsMenu.set_volume(save.options_audio_volume)
 		OptionsMenu.set_mute(save.options_audio_mute)
 		return save

@@ -1,10 +1,17 @@
 extends Control
 class_name OptionsMenu
 
+@onready var buttons: Array[Button] = [
+	$VBoxContainer/Input/OptionButton,
+	$VBoxContainer/Mute/CustomCheckbox,
+	$VBoxContainer/Resolution/OptionButton,
+	$VBoxContainer/FullScreen/CustomCheckbox,
+]
+
+@onready var input_controls_option_button: OptionButton = $VBoxContainer/Input/OptionButton
 @onready var audio_volume_slider: HSlider = $VBoxContainer/Volume/HSlider
 @onready var audio_mute_checkbox: CustomCheckbox = $VBoxContainer/Mute/CustomCheckbox
 @onready var resolution_option_button: OptionButton = $VBoxContainer/Resolution/OptionButton
-
 
 static func set_input_controls(input_control: int) -> void:
 	Player.input_controls = input_control
@@ -25,6 +32,7 @@ func set_fullscreen(state: bool) -> void:
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 
 func save_options_and_go_back() -> void:
+	LevelProvider.save_file.options_input_controls = input_controls_option_button.selected
 	LevelProvider.save_file.options_audio_volume = audio_volume_slider.value
 	LevelProvider.save_file.options_audio_mute = audio_mute_checkbox.button_pressed
 	LevelProvider.save_file.save_game()

@@ -29,8 +29,10 @@ func _init() -> void:
 	LevelProvider.save_file = SaveFile.load_game()
 
 func _ready() -> void:
+	get_window().grab_focus()
 	get_tree().paused = true
 	set_resolution(Resolution.p1280x720)
+	options_menu.input_controls_option_button.select(LevelProvider.save_file.options_input_controls)
 	options_menu.audio_volume_slider.value = LevelProvider.save_file.options_audio_volume
 	options_menu.audio_mute_checkbox.button_pressed = LevelProvider.save_file.options_audio_mute
 	Toss.set_money_weights()
@@ -71,6 +73,7 @@ func stop_game() -> void:
 	LevelProvider.level.queue_free()
 	level_manager.load_level()
 	main_menu.show()
+	main_menu.buttons[0].grab_focus()
 	ui.held_item_slot1.hide()
 	ui.held_item_slot2.hide()
 	LevelProvider.save_file.save_game()
