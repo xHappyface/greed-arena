@@ -1,0 +1,7 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://cdvuac8qrf2i0"]
+
+[ext_resource type="Shader" uid="uid://dpbi1frmbhw5q" path="res://resources/shaders/yarn_ball_SHADER.tres" id="1_r2lq3"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_r2lq3")
