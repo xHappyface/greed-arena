@@ -40,10 +40,14 @@ func _physics_process(delta: float) -> void:
 	match input_controls:
 		InputControls.KEYBOARD:
 			_handle_keyboard_movement(delta)
+			if Input.is_action_just_pressed("keyboard_shift"):
+				_switch_items()
 			if Input.is_action_just_pressed("keyboard_action"):
 				_use_item()
 		InputControls.GAMEPAD:
 			_handle_gamepad_movement(delta)
+			if Input.is_action_just_pressed("gamepad_shift"):
+				_switch_items()
 			if Input.is_action_just_pressed("gamepad_action"):
 				_use_item()
 		_:
@@ -71,6 +75,10 @@ func _unhandled_input(event: InputEvent) -> void:
 			LevelProvider.level.ground_marker.position = nav.target_position
 			if not LevelProvider.level.ground_marker.visible:
 				LevelProvider.level.ground_marker.show()
+	elif event is InputEventMouseButton and \
+	  (event.button_index == MOUSE_BUTTON_WHEEL_DOWN or event.button_index == MOUSE_BUTTON_WHEEL_UP) \
+	  and event.is_pressed():
+		_switch_items()
 	elif event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_RIGHT and event.is_pressed():
 		_use_item()
 
@@ -142,6 +150,9 @@ func _switch_items() -> void:
 	if held_items.size() > 1:
 		var item: Toss.TossObject = held_items.pop_front()
 		held_items.append(item)
+		var tmp_texture: Texture2D = LevelProvider.level.level_manager.ui.held_item_slot1.texture
+		LevelProvider.level.level_manager.ui.held_item_slot1.set_texture(LevelProvider.level.level_manager.ui.held_item_slot2.texture)
+		LevelProvider.level.level_manager.ui.held_item_slot2.set_texture(tmp_texture)
 
 func _on_magnetic_field_area_entered(area: Area3D) -> void:
 	if area is Money:
