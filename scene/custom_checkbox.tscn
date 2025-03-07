@@ -1,16 +1,17 @@
-[gd_scene load_steps=6 format=3 uid="uid://bjud2be8l0dw8"]
+[gd_scene load_steps=7 format=3 uid="uid://bjud2be8l0dw8"]
 
 [ext_resource type="Script" path="res://scripts/custom_checkbox.gd" id="1_106uc"]
+[ext_resource type="StyleBox" uid="uid://dbysybyanonu8" path="res://resources/custom_checkbox_style_hover.tres" id="1_b5fgw"]
 [ext_resource type="Texture2D" uid="uid://c10lkebykfqwl" path="res://assets/images/check_128dp_E8EAED_FILL0_wght400_GRAD0_opsz48.svg" id="1_rqxe1"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g3dsu"]
-bg_color = Color(0.168627, 0.164706, 0.2, 1)
+[ext_resource type="StyleBox" uid="uid://bexow6vomxars" path="res://resources/custom_checkbox_style_normal.tres" id="2_lecqg"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b2bcm"]
 bg_color = Color(0.168627, 0.164706, 0.2, 1)
 
 [sub_resource type="Theme" id="Theme_k23jv"]
-Button/styles/normal = SubResource("StyleBoxFlat_g3dsu")
+Button/styles/focus = ExtResource("1_b5fgw")
+Button/styles/hover = ExtResource("1_b5fgw")
+Button/styles/normal = ExtResource("2_lecqg")
 _Checked/base_type = &"Button"
 _Checked/icons/icon = ExtResource("1_rqxe1")
 _Checked/styles/pressed = SubResource("StyleBoxFlat_b2bcm")

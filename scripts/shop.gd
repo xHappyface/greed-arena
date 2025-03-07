@@ -7,6 +7,7 @@ class_name ShopMenu
 @onready var magnet_item_card: ItemCard = $VBoxContainer/ShopItems/MagnetItemCard
 @onready var money_bundle_upgrade_card: ItemCard = $VBoxContainer/ShopItems/MoneyBundleUpgradeCard
 @onready var money_bag_upgrade_card: ItemCard = $VBoxContainer/ShopItems/MoneyBagUpgradeCard
+@onready var back_button: Button = $VBoxContainer/BackButton
 
 @export var items: Array[ShopItem] = []
 

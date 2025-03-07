@@ -26,6 +26,13 @@ func _ready() -> void:
 			for button in menu.buttons:
 				button.connect("focus_entered", _play_menu_seek)
 				button.connect("pressed", _play_menu_select)
+		elif menu is ShopMenu:
+			for item in menu.shop_items.get_children():
+				if item is ItemCard:
+					item.button.connect("focus_entered", _play_menu_seek)
+					item.button.connect("pressed", _play_menu_select)
+			menu.back_button.connect("focus_entered", _play_menu_seek)
+			menu.back_button.connect("pressed", _play_menu_select)
 	if Player.input_controls != Player.InputControls.MOUSE:
 		menus[current_menu].buttons[0].grab_focus()
 
