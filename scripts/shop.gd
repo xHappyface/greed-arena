@@ -65,18 +65,33 @@ func _charge_player(cost: int) -> void:
 	get_parent().get_parent().ui.update_money()
 
 func _update_speed_card() -> void:
-	speed_item_card.label.text = "Speed Increase\n(Rank %d)" % \
-	  [LevelProvider.ranks[LevelProvider.Rank.SPEED] + 1]
+	var next_rank: int = LevelProvider.ranks[LevelProvider.Rank.SPEED] + 1
+	speed_item_card.label.set_text("Speed Increase\n(Rank %d)" % \
+	  [next_rank])
+	if next_rank > LevelProvider.SPEED_RANKS:
+		speed_item_card.button.set_text("Sold Out")
+		speed_item_card.button.set_theme(load("res://resources/item_card_button_theme_sold_out.tres"))
+		speed_item_card.button.set_disabled(true)
 	queue_redraw()
 
 func _update_time_card() -> void:
-	time_item_card.label.text = "Extra Time\n(Rank %d)" % \
-	  [LevelProvider.ranks[LevelProvider.Rank.TIME] + 1]
+	var next_rank: int = LevelProvider.ranks[LevelProvider.Rank.TIME] + 1
+	time_item_card.label.set_text("Extra Time\n(Rank %d)" % \
+	  [next_rank])
+	if next_rank > LevelProvider.TIME_RANKS:
+		time_item_card.button.set_text("Sold Out")
+		time_item_card.button.set_theme(load("res://resources/item_card_button_theme_sold_out.tres"))
+		time_item_card.button.set_disabled(true)
 	queue_redraw()
 
 func _update_magnet_card() -> void:
-	magnet_item_card.label.text = "Magnet\n(Rank %d)" % \
-	  [LevelProvider.ranks[LevelProvider.Rank.MAGNET] + 1]
+	var next_rank: int = LevelProvider.ranks[LevelProvider.Rank.MAGNET] + 1
+	magnet_item_card.label.set_text("Magnet\n(Rank %d)" % \
+	  [next_rank])
+	if next_rank > LevelProvider.MAGNET_RANKS:
+		magnet_item_card.button.set_text("Sold Out")
+		magnet_item_card.button.set_theme(load("res://resources/item_card_button_theme_sold_out.tres"))
+		magnet_item_card.button.set_disabled(true)
 	queue_redraw()
 
 func _update_money_bundle_card() -> void:

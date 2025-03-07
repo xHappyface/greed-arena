@@ -1,0 +1,17 @@
+[gd_resource type="Theme" load_steps=5 format=3 uid="uid://cppkesv7m1rj8"]
+
+[ext_resource type="FontFile" uid="uid://o68r33fxemg2" path="res://assets/fonts/Silkscreen-Regular.ttf" id="1_cern6"]
+[ext_resource type="StyleBox" uid="uid://kf2k34pdjkff" path="res://resources/main_menu_button_style_hover_sold_out.tres" id="2_chrgl"]
+[ext_resource type="StyleBox" uid="uid://bjqjxevdf4fp7" path="res://resources/main_menu_button_style_normal_sold_out.tres" id="3_qfx0g"]
+[ext_resource type="StyleBox" uid="uid://dw67k2kh2e70v" path="res://resources/main_menu_button_style_pressed_sold_out.tres" id="4_54cym"]
+
+[resource]
+resource_local_to_scene = true
+Button/colors/font_color = Color(1, 1, 1, 1)
+Button/constants/outline_size = 10
+Button/font_sizes/font_size = 48
+Button/fonts/font = ExtResource("1_cern6")
+Button/styles/focus = ExtResource("2_chrgl")
+Button/styles/hover = ExtResource("2_chrgl")
+Button/styles/normal = ExtResource("3_qfx0g")
+Button/styles/pressed = ExtResource("4_54cym")

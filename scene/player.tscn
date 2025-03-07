@@ -14,7 +14,7 @@ radius = 0.75
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_0fjtc"]
 height = 1.0
-radius = 2.87
+radius = 2.0
 
 [sub_resource type="Animation" id="Animation_aeata"]
 length = 0.001

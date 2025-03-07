@@ -88,17 +88,17 @@ func set_player_magnetism(rank: int) -> void:
 		3:
 			magnetic_field.monitoring = true
 			magnetic_field.visible = true
-			magnetic_field.find_child("CollisionShape3D").shape.radius = 2.87
+			magnetic_field.find_child("CollisionShape3D").shape.radius = 3.25
 			magnetic_field.find_child("Magnet").scale = Vector3(2.0, 1.35, 2.0)
 		2:
 			magnetic_field.monitoring = true
 			magnetic_field.visible = true
-			magnetic_field.find_child("CollisionShape3D").shape.radius = 2.5
+			magnetic_field.find_child("CollisionShape3D").shape.radius = 2.67
 			magnetic_field.find_child("Magnet").scale = Vector3(1.67, 1.3, 1.67)
 		1:
 			magnetic_field.monitoring = true
 			magnetic_field.visible = true
-			magnetic_field.find_child("CollisionShape3D").shape.radius = 1.87
+			magnetic_field.find_child("CollisionShape3D").shape.radius = 2.0
 			magnetic_field.find_child("Magnet").scale = Vector3(1.25, 1.25, 1.25)
 		_:
 			magnetic_field.monitoring = false

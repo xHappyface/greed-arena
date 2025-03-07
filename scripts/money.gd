@@ -10,4 +10,4 @@ func _physics_process(delta: float) -> void:
 		var player = LevelProvider.level.player
 		var field_radius: float = player.magnetic_field.find_child("CollisionShape3D").shape.radius
 		var multiplier: float = attraction_curve.sample((field_radius - global_position.distance_to(player.global_position)) / field_radius)
-		global_position = global_position.move_toward(player.global_position, 12.0 * delta * multiplier)
+		global_position = global_position.move_toward(player.global_position, 14.0 * delta * multiplier)
