@@ -6,6 +6,7 @@ class_name Player
 @onready var magnetic_field: Area3D = $MagneticField
 @onready var shield: Node3D = $Shield
 @onready var shield_timer: Timer = $Shield/Timer
+@onready var shield_sfx: AudioStreamPlayer3D = $Shield/AudioStreamPlayer3D
 
 enum InputControls {
 	MOUSE,
@@ -24,6 +25,7 @@ const SPEED_GROWTH_RATE: float = 75.0
 var money: int = 0
 var speed: float = BASE_SPEED
 var held_items: Array[Toss.TossObject] = []
+var rotation_multiplier: float = 1.0
 
 static func get_real_speed() -> float:
 	return BASE_SPEED + (LevelProvider.ranks[LevelProvider.Rank.SPEED] * SPEED_GROWTH_RATE)
@@ -52,7 +54,7 @@ func _physics_process(delta: float) -> void:
 			else:
 				_handle_mouse_movement(delta)
 	if not (velocity == Vector3.ZERO):
-		yarn_ball.rotation_degrees.x -= Vector3.ZERO.distance_to(velocity) * 0.5
+		yarn_ball.rotation_degrees.x -= Vector3.ZERO.distance_to(velocity) * 0.5 * rotation_multiplier
 	move_and_slide()
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -76,6 +78,7 @@ func take_hit() -> void:
 	if shield.visible:
 		shield_timer.stop()
 		shield.hide()
+		shield_sfx.play()
 	else:
 		print("GAME OVER")
 		LevelProvider.level.level_manager.get_parent().stop_game()
@@ -134,6 +137,11 @@ func _use_item() -> void:
 				shield_timer.start()
 			_:
 				LevelProvider.slow_time()
+
+func _switch_items() -> void:
+	if held_items.size() > 1:
+		var item: Toss.TossObject = held_items.pop_front()
+		held_items.append(item)
 
 func _on_magnetic_field_area_entered(area: Area3D) -> void:
 	if area is Money:

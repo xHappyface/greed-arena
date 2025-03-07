@@ -30,11 +30,12 @@ var ranks: Dictionary = {
 
 func slow_time() -> void:
 	var tween: Tween = create_tween()
-	var tween2: Tween = create_tween()
 	Engine.time_scale = 0.5
 	LevelProvider.level.player.speed = Player.get_real_speed() * 4.0
+	LevelProvider.level.player.rotation_multiplier = 0.25
 	tween.tween_callback(Engine.set.bind("time_scale", 1.0)).set_delay(3.0)
-	tween2.tween_callback(LevelProvider.level.player.set.bind("speed", Player.get_real_speed())).set_delay(3.0)
+	tween.tween_callback(LevelProvider.level.player.set.bind("speed", Player.get_real_speed()))
+	tween.tween_callback(LevelProvider.level.player.set.bind("rotation_multiplier", 1.0))
 
 func update_game_timer() -> void:
 	level.game_timer.stop()

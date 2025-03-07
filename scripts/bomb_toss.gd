@@ -9,7 +9,13 @@ var triggered: bool = false
 
 func _ready() -> void:
 	var tween: Tween = create_tween()
+	var explosion_sfx: AudioStreamPlayer3D = AudioStreamPlayer3D.new()
+	explosion_sfx.set_stream(preload("res://assets/audio/sfx/bomb.wav"))
+	explosion_sfx.connect("finished", explosion_sfx.queue_free)
+	explosion_sfx.set_bus("SFX")
+	LevelProvider.level.audio_players.add_child(explosion_sfx)
 	tween.tween_callback(bomb_timer.start).set_delay(0.87)
+	tween.tween_callback(_play_explosion_sfx.bind(explosion_sfx)).set_delay(3.1)
 
 func _physics_process(_delta: float) -> void:
 	var anchor: Node3D = bomb_label.get_parent()
@@ -34,3 +40,7 @@ func _on_timer_timeout() -> void:
 	var tween: Tween = create_tween()
 	tween.tween_callback(bomb._explode).set_delay(0.3)
 	tween.tween_callback(queue_free).set_delay(0.2)
+
+func _play_explosion_sfx(audio_player: AudioStreamPlayer3D) -> void:
+	audio_player.global_position = bomb.global_position
+	audio_player.play()

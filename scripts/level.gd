@@ -21,6 +21,7 @@ class_name Level
 @onready var bomb_spawner2: Timer = $Timers/BombSpawner2
 @onready var bomb_spawner3: Timer = $Timers/BombSpawner3
 @onready var player: Player = $Player
+@onready var audio_players: Node3D = $AudioPlayers
 @onready var camera: Camera3D = $Camera3D
 @onready var ground_marker: Node3D = $GroundMarker
 

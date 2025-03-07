@@ -6,6 +6,7 @@ class_name OptionsMenu
 	$VBoxContainer/Mute/CustomCheckbox,
 	$VBoxContainer/Resolution/OptionButton,
 	$VBoxContainer/FullScreen/CustomCheckbox,
+	$VBoxContainer/BackButton
 ]
 
 @onready var input_controls_option_button: OptionButton = $VBoxContainer/Input/OptionButton

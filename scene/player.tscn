@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://5xjrlqdulx2k"]
+[gd_scene load_steps=13 format=3 uid="uid://5xjrlqdulx2k"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_rw3mr"]
 [ext_resource type="PackedScene" uid="uid://dsdjae2lcwlrs" path="res://assets/models/fx/MagnoSphereCore.glb" id="2_352wy"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dn657ror34tol" path="res://assets/models/fx/MagnoSphereInside.glb" id="3_1ohqh"]
 [ext_resource type="PackedScene" uid="uid://cmo02tqnkjj" path="res://assets/models/fx/MagnoSphereOutside.glb" id="4_j3ebi"]
 [ext_resource type="PackedScene" uid="uid://d1rjtos5xeyq7" path="res://assets/models/Shield.glb" id="5_ygd6d"]
+[ext_resource type="AudioStream" uid="uid://cg4lbbab5fvkd" path="res://assets/audio/sfx/shield_deflect.wav" id="7_xq3pg"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_tsefq"]
 height = 1.0
@@ -110,6 +111,12 @@ transform = Transform3D(-1, 6.18172e-08, -6.18172e-08, 0, 0.707107, 0.707107, 8.
 [node name="Timer" type="Timer" parent="Shield"]
 wait_time = 3.0
 one_shot = true
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Shield"]
+transform = Transform3D(-1, 0, 2.53518e-06, 0, 1, 0, -2.53518e-06, 0, -1, 0, -0.5, 0)
+stream = ExtResource("7_xq3pg")
+bus = &"SFX"
+area_mask = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
