@@ -54,7 +54,7 @@ func _physics_process(delta: float) -> void:
 			else:
 				_handle_mouse_movement(delta)
 	if not (velocity == Vector3.ZERO):
-		yarn_ball.rotation_degrees.x -= Vector3.ZERO.distance_to(velocity) * 0.5 * rotation_multiplier
+		yarn_ball.rotation_degrees.x -= Vector3.ZERO.distance_to(velocity) * 0.67 * rotation_multiplier
 	move_and_slide()
 
 func _unhandled_input(event: InputEvent) -> void:

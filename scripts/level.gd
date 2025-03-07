@@ -45,7 +45,6 @@ func _on_money_spawner_timeout() -> void:
 	var toss_object: Toss.TossObject = Toss.random_toss_object()
 	var toss: Toss = Toss.create_new(toss_object)
 	_spawn_at_random_tosser(toss)
-	toss.player = player
 	if not Toss.held_items.has(toss_object):
 		toss.toss_object.connect("tree_exited", level_manager.ui.update_money)
 	else:
@@ -56,7 +55,6 @@ func _on_money_spawner2_timeout() -> void:
 	var toss_object: Toss.TossObject = Toss.random_toss_object()
 	var toss: Toss = Toss.create_new(toss_object)
 	_spawn_at_random_tosser(toss)
-	toss.player = player
 	if not Toss.held_items.has(toss_object):
 		toss.toss_object.connect("tree_exited", level_manager.ui.update_money)
 	else:
@@ -67,7 +65,6 @@ func _on_money_spawner3_timeout() -> void:
 	var toss_object: Toss.TossObject = Toss.random_toss_object()
 	var toss: Toss = Toss.create_new(toss_object)
 	_spawn_at_random_tosser(toss)
-	toss.player = player
 	if not Toss.held_items.has(toss_object):
 		toss.toss_object.connect("tree_exited", level_manager.ui.update_money)
 	else:
